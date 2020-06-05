@@ -9,4 +9,27 @@
     position: fixed;
     top: 0;
     background-color: blue;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
 }
+.logo {
+    margin: 0 ;
+    padding: 0;
+    width: max-content;
+    
+}
+.link{
+    color: white;
+    text-decoration: none;
+    &:visited {
+        color: white;
+    }
+}
+.cart{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+

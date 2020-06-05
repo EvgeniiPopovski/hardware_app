@@ -6,5 +6,38 @@
     width: 100vw;
     height: 100vh;
     padding-top: 50px;
-    background-color: lightpink;
+    display: flex;
+    flex-wrap: wrap;
+}
+.menuBlock {
+    display: flex;
+    height: 50%;
+    width: 50%;
+    position: relative;
+    
+    
+}
+.menuBlockHeader{
+    margin: 0;
+    padding: 0;
+    font-size: 45px;
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    
+    
+
+}
+.imgBlock {
+    max-width: 100%;
+    max-height: auto;
+    transition: .5s ease-in-out;
+    filter: brightness(.8) blur(3px);
+    &:hover {
+        filter: none;
+    }
 }

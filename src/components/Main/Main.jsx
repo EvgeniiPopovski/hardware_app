@@ -1,37 +1,41 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./Main.module.scss";
 import HardwareSections from "./MainBlocks/HardwareSection";
-import {fireBase} from './../../API/HardwareAPI'
+import { MainBlocksThunkCreator } from "../../redux/mainBlocksReduser";
+import { connect } from "react-redux";
 
-let HardwareSectionInfo = [
-	{
-		header: "Фурнитура для душевых кабин",
-		src: "/images/HardwareBlock/ShowerHardware.jpg",
-		link: '/showerHardware'
-	},
-	{
-		header: "Фурнитура для стеклянных конструкций",
-		src: "/images/HardwareBlock/GlassConstructures.jpg",
-		link: '/constructionsHardware'
-	},
-	{
-		header: " Фурнитура для зеркал",
-		src: "/images/HardwareBlock/MirrorHardware.jpg",
-		link: '/mirrorHardware'
-	},
-	{
-		header: "Фурнитура для стеклянной мебели",
-		src: "/images/HardwareBlock/GlassFurnitureHardware.jpg",
-		link: '/glassFurnitureHardware'
-	},
-];
 
-fireBase.getCategories()
 
-let bloks = HardwareSectionInfo.map((section,  i) => (
-	<HardwareSections key={i} header={section.header} imgSrc={section.src} link={section.link}/>
-));
 
-export const Main = () => {
+
+
+
+const Main = (props) => {
+	useEffect(() => {
+		props.getMainBlocks()
+	}, [])
+	let bloks = props.MainBlocks.map((block,  i) => (
+		<HardwareSections key={i} header={block.header} imgSrc={block.src} link={block.link}/>
+	));
+
 	return <div className={styles.mainContainer}>{bloks}</div>;
 };
+
+
+
+
+
+const mapStateToProps = (state) => {
+	return {
+		MainBlocks: state.MainBlocks
+	}
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		getMainBlocks: () => {dispatch(MainBlocksThunkCreator())}
+	}
+}
+
+
+export const MainContainer =  connect( mapStateToProps, mapDispatchToProps )(Main)

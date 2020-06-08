@@ -8,9 +8,9 @@ const instance = axios.create({
     
 });
 
-export  const fireBase = {
+export  const fireBaseAPI = {
     async getCategories () {
         let response = await instance.get(`https://${Project_ID}.firebaseio.com/Hardware.json`);
-        console.log(response)
+        return response.data
     } 
 } 

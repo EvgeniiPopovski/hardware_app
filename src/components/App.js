@@ -1,6 +1,6 @@
 import React from "react";
 import { Header } from "./Header/Header";
-import { Main } from "./Main/Main";
+import { MainContainer } from "./Main/Main";
 import { BrowserRouter, Route } from "react-router-dom";
 
 function App() {
@@ -8,7 +8,11 @@ function App() {
 		<div>
 			<BrowserRouter>
 			<Header />
-				<Route path ='/' component={Main}/>
+				<Route path ='/' component={MainContainer }/>
+				{/* <Route path = '/shower' component={}/>
+				<Route path = '/constructions' component={}/>
+				<Route path = '/mirror' component={}/>
+				<Route path = '/glassFurniture' component={}/> */}
 			</BrowserRouter>
 		</div>
 	);

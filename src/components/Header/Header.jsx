@@ -1,15 +1,19 @@
 import React from "react";
 import styles from "./Header.module.scss";
 import { Link } from "react-router-dom";
+import BurgerButton from "../../common/BurgerButton/BurgerButton";
 
-export const Header = (props) => {
+export const Header = ({toggleMenuOpen , isOpened}) => {
 	return (
 		<div className={styles.headerContainer}>
-			<h1 className={styles.logo}>
-				<Link to="/" className={styles.link}>
-					Almaz-Luks
-				</Link>
-			</h1>
+			<div className={styles.menuBurgerContainer}>
+				<BurgerButton toggleMenuOpen={toggleMenuOpen} />
+				<h1 className={styles.logo}>
+					<Link to="/" className={styles.link}>
+						Almaz-Luks
+					</Link>
+				</h1>
+			</div>
 			<div className={styles.input}>
 				<input type="text" placeholder="Search..." />
 				<button>Search</button>

@@ -1,0 +1,42 @@
+
+* {
+    box-sizing: border-box;
+}
+.semiSectionsContainer{
+    width: 100vw;
+    height: 100vh;
+    padding-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.semisectionBlock {
+    display: flex;
+    height: 50%;
+    width: 25%;
+    position: relative;
+    filter: grayscale(.9);
+    
+}
+.semisectionBlockHeader{
+    margin: 0;
+    padding: 0;
+    font-size: 45px;
+    text-decoration: none;
+    text-align: center;
+    color: rgba(4, 8, 19, 0.9);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    
+    
+
+}
+.imgBlock {
+    max-width: 100%;
+    transition: .5s ease-in-out;
+    filter: brightness(.8) blur(4px);
+    &:hover {
+        filter: none;
+    }
+}

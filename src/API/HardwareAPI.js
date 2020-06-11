@@ -11,6 +11,13 @@ const instance = axios.create({
 export  const fireBaseAPI = {
     async getCategories () {
         let response = await instance.get(`https://${Project_ID}.firebaseio.com/Hardware.json`);
+        console.log(response.data)
         return response.data
-    } 
-} 
+    },
+    async getSemiSections () {
+        let response = await instance.get(`https://${Project_ID}.firebaseio.com/SemiSections.json`);
+        console.log(response.data)
+        return response.data
+    }
+}
+

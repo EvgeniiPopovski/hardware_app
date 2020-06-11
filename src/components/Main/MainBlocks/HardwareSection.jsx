@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './../Main.module.scss'
 import { Link } from 'react-router-dom';
 
+
 export default function HardwareSections (props) {
     return (
         <div className={styles.menuBlock}>

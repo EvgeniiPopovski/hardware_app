@@ -14,11 +14,23 @@
     align-items: center;
     padding: 0 20px;
 }
+
+.menuBurgerContainer {
+    display: flex;
+    align-items: center;
+}
+
+.burgerButton {
+    cursor: pointer;
+    &:hover {
+        color: gray;
+    }
+}
+
 .logo {
-    margin: 0 ;
+    margin: 0px 0px 0px 25px;
     padding: 0;
     width: max-content;
-    
 }
 .link{
     color: white;

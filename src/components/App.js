@@ -1,16 +1,30 @@
-import React from "react";
+import React , {useState} from "react";
 import { Header } from "./Header/Header";
 import { MainContainer } from "./Main/Main";
 import { BrowserRouter, Route } from "react-router-dom";
+import ShowerHardwareContainer from "./SemiSections/ShowerHardware/ShowerHardwareContainer";
+import BurgerMenu from "../common/BurgerMenu/BurgerMenu";
+
+
 
 function App() {
+
+	const [ isOpened , setIsOpened] = useState(false)
+
+	const toggleMenuOpen = () => {
+
+		setIsOpened(!isOpened)
+	}
+
 	return (
 		<div>
 			<BrowserRouter>
-			<Header />
-				<Route path ='/' component={MainContainer }/>
-				{/* <Route path = '/shower' component={}/>
-				<Route path = '/constructions' component={}/>
+			<Header toggleMenuOpen={toggleMenuOpen} />
+			<BurgerMenu toggleMenuOpen={toggleMenuOpen} isOpened={isOpened} />
+				<Route exact path ='/' component={MainContainer}/>
+				<Route exact path = '/shower' component={ShowerHardwareContainer}/>
+				{/* <Route exact path = '/shower/showerHinges' component={}/> */}
+				{/* <Route path = '/constructions' component={}/>
 				<Route path = '/mirror' component={}/>
 				<Route path = '/glassFurniture' component={}/> */}
 			</BrowserRouter>

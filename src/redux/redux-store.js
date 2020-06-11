@@ -1,9 +1,11 @@
 import {combineReducers  , createStore , compose , applyMiddleware} from 'redux';
 import { MainBlocksReducer } from './mainBlocksReduser'
 import thunk from 'redux-thunk';
+import SemiSectionsReducer from './semiSectionsreducer';
 
 const reducers = combineReducers ({
-    MainBlocks : MainBlocksReducer
+    MainBlocks : MainBlocksReducer,
+    SemiSections : SemiSectionsReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

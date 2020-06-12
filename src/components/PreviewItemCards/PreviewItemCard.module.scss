@@ -1,0 +1,113 @@
+.cardTitle {
+	margin: 0px;
+	font-size: 1.4em;
+	font-weight: 700;
+}
+
+.cardText {
+	font-size: 12px;
+}
+
+.propertyCard {
+	height: 23em;
+	width: 21em;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	position: relative;
+	-webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+	-o-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+	transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+	border-radius: 16px;
+	overflow: hidden;
+	margin: 20px 20px;
+	
+}
+/* ^-- The margin bottom is necessary for the drop shadow otherwise it gets clipped in certain cases. */
+
+/* Top Half of card, image. */
+
+.propertyImage {
+	height: 19em;
+	width: 21em;
+	padding: 1em 2em;
+	position: Absolute;
+	top: 0px;
+	-webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+	-o-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+	transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+	background-image: url('./../../common/img/hinges/glass-glass_hinge_small.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+
+/* Bottom Card Section */
+
+.propertyDescription {
+	background-color: #fafafc;
+	height: 8em;
+	width: 21em;
+	position: absolute;
+	bottom: 0em;
+	-webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+	-o-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+	transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+	padding: 0.5em 1em;
+	text-align: center;
+}
+
+/* Social Icons */
+
+.propertySocialIcons {
+	width: 1em;
+	height: 1em;
+	background-color: black;
+	position: absolute;
+	bottom: 1em;
+	left: 1em;
+	-webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+	-o-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+	transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+/* Property Cards Hover States */
+.propertyCard:hover{
+    -webkit-box-shadow: 15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
+	box-shadow: 15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
+}
+
+.propertyCard:hover .propertyDescription {
+	height: 0em;
+	padding: 0px 1em;
+}
+.propertyCard:hover .propertyImage {
+	height: 23em;
+}
+
+.propertyCard:hover .propertySocialIcons {
+	background-color: white;
+}
+
+.propertyCard:hover .propertySocialIcons:hover {
+	background-color: blue;
+	cursor: pointer;
+}
+
+.propertyImageTitle {
+	text-align: center;
+	position: Relative;
+	top: 30%;
+	opacity: 0;
+	transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1) 0.2s;
+	color: black;
+	font-size: 1.2em;
+}
+
+.propertyCard:hover .propertyImageTitle {
+	opacity: 1;
+}

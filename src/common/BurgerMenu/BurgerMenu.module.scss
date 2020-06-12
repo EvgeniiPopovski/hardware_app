@@ -1,22 +1,24 @@
 
 .burgerMenu {
-	position: absolute;
+	position: fixed;
 	left: 0px;
+	top: 0;
 	height: 100%;
 	width: 400px;
 	background-color: lightblue;
-	z-index: 2;
+	z-index: 21;
 	padding: 0px 0px 0px 15px;
 	transition: all .3s linear;
 }
 
 .burgerMenuClosed{
 	left: -100%;
-	position: absolute;
+	top:0;
+	position: fixed;
 	height: 100%;
 	width: 400px;
 	background-color: lightblue;
-	z-index: 2;
+	z-index: 21;
 	padding: 0px 0px 0px 15px;
 	transition: all .3s linear;
 }

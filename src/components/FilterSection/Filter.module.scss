@@ -1,0 +1,21 @@
+.filterSection {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 200px;
+    flex-shrink: 0;
+    margin: 20px 0 0 30px ;
+    background-color: lightblue;
+    padding: 10px 10px;
+    height: max-content;
+    & label {
+        line-height: 25px;
+    }
+}
+
+.filterHeader{
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+    
+}

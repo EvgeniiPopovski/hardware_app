@@ -1,29 +1,35 @@
 import React from "react";
 import styles from './PreviewItemCard.module.scss'
 
-export const PreviewItemCard = () => {
+
+export const PreviewItemCard = (props) => {
+	let divImage = {
+		backgroundImage : 'url(' + props.mainPhoto + ')'
+	}
+	
+	
 	return (
 		<div>
 			<div className={styles.propertyCard}>
 				<a href="#">
-					<div className={styles.propertyImage}>
-						<div className="property-image-title">
+					<div className={styles.propertyImage} style={divImage}>
+						<div className={styles.propertyImageTitle}>
 							{/* <!-- Optional <h5>Card Title</h5> If you want it, turn on the CSS also. --> */}
 						</div>
 					</div>
 				</a>
 				<div className={styles.propertyDescription}>
-					<h5 className={styles.cardTitle}> Card Title </h5>
+					<h5 className={styles.cardTitle}> {props.header} {props.article}</h5>
+					<span>  </span>
 					<p className={styles.cardText}>
-						Lorem Ipsum Dipsum hortata. Mixcall Horcho. Mixwell Chingo. More
-						Bingo. Lorem Ipum doth be hard.
+						{props.text}
 					</p>
 				</div>
-				<a href="#">
+				{/* <a href="#">
 					<div className={styles.propertySocialIcons}>
-						{/* <!-- I would usually put multipe divs inside here set to flex. Some people might use Ul li. Multiple Solutions --> */}
+						<!-- I would usually put multipe divs inside here set to flex. Some people might use Ul li. Multiple Solutions -->
 					</div>
-				</a>
+				</a> */}
 			</div>
 		</div>
 	);

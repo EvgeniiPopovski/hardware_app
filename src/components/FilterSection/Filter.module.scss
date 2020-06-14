@@ -1,4 +1,5 @@
 .filterSection {
+    
     display: flex;
     flex-direction: column;
     flex-basis: 200px;
@@ -7,6 +8,7 @@
     background-color: lightblue;
     padding: 10px 10px;
     height: max-content;
+    
     & label {
         line-height: 25px;
     }

@@ -5,9 +5,9 @@ import { BrowserRouter, Route } from "react-router-dom";
 import ShowerHardwareContainer from "./SemiSections/ShowerHardware/ShowerHardwareContainer";
 import BurgerMenu from "../common/BurgerMenu/BurgerMenu";
 // import Filter from "./FilterSection/Filter";
-import { PreviewItemCard } from "./PreviewItemCards/PreviewItemCard";
-import { ItemsList } from "./ItemsList/ItemsList";
-import Preloader from "../common/Preloader/Preloader";
+// import { PreviewItemCard } from "./PreviewItemCards/PreviewItemCard";
+import { ItemsListContainer } from "./ItemsList/ItemsListContainer";
+// import Preloader from "../common/Preloader/Preloader";
 
 function App() {
 	const [isOpened, setIsOpened] = useState(false);
@@ -24,7 +24,7 @@ function App() {
 
 				<Route exact path="/" component={MainContainer} />
 				<Route exact path="/shower" component={ShowerHardwareContainer} />
-				<Route exact path="/shower/showerHinges" component={ItemsList} />
+				<Route exact path="/shower/showerHinges" component={ItemsListContainer} />
 				{/* <Route path = '/constructions' component={}/>
 				<Route path = '/mirror' component={}/>
 				<Route path = '/glassFurniture' component={}/> */}

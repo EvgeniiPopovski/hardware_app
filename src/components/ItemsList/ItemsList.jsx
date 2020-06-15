@@ -3,7 +3,7 @@ import styles from "./ItemsList.module.scss";
 import { PreviewItemCard } from "../PreviewItemCards/PreviewItemCard";
 import Filter from "./../FilterSection/Filter";
 
-export const ItemsList = ({ hingesList, isLoading, getHingesList }) => {
+export const ItemsList = ({ hingesList, getHingesList }) => {
 	useEffect(() => {
 		getHingesList();
 	}, []);
@@ -18,7 +18,6 @@ export const ItemsList = ({ hingesList, isLoading, getHingesList }) => {
             color={hinge.description.color}
             price={hinge.price}
             text={hinge.description.text}
-
             />
 	));
 

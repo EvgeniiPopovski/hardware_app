@@ -1,29 +1,29 @@
 import React from "react";
-import styles from './PreviewItemCard.module.scss'
-
+import styles from "./PreviewItemCard.module.scss";
+import { Link } from "react-router-dom";
 
 export const PreviewItemCard = (props) => {
 	let divImage = {
-		backgroundImage : 'url(' + props.mainPhoto + ')'
-	}
-	
-	
+		backgroundImage: "url(" + props.mainPhoto + ")",
+	};
+
 	return (
 		<div>
 			<div className={styles.propertyCard}>
-				<a href="#">
+				<Link to={`/shower/showerHinges/hinge/${props.article}`}>
 					<div className={styles.propertyImage} style={divImage}>
 						<div className={styles.propertyImageTitle}>
 							{/* <!-- Optional <h5>Card Title</h5> If you want it, turn on the CSS also. --> */}
 						</div>
 					</div>
-				</a>
+				</Link>
 				<div className={styles.propertyDescription}>
-					<h5 className={styles.cardTitle}> {props.header} {props.article}</h5>
-					<span>  </span>
-					<p className={styles.cardText}>
-						{props.text}
-					</p>
+					<h5 className={styles.cardTitle}>
+						{" "}
+						{props.header} {props.article}
+					</h5>
+					<span> </span>
+					<p className={styles.cardText}>{props.text}</p>
 				</div>
 				{/* <a href="#">
 					<div className={styles.propertySocialIcons}>
@@ -34,4 +34,3 @@ export const PreviewItemCard = (props) => {
 		</div>
 	);
 };
-

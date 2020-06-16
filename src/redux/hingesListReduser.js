@@ -3,7 +3,6 @@ import { fireBaseAPI } from "./../API/HardwareAPI";
 
 const SET_HINGES_LIST = "SET_HINGES_LIST";
 const IS_LOADING = "HINGES_LIST_IS_LOADING";
-
 let InitialState = {
     isLoading : true,
     Hinges: [
@@ -155,7 +154,6 @@ export const HingesListReduser = (state = InitialState, action) => {
     switch (action.type) {
         case SET_HINGES_LIST: {
             let stateCopy = { ...state , Hinges : action.hingesList.Hinges };
-            console.log(stateCopy)
             return stateCopy;
         }
 
@@ -164,7 +162,6 @@ export const HingesListReduser = (state = InitialState, action) => {
             stateCopy.isLoading = action.isLoading
             return stateCopy
         }
-
         default:
             return state;
     }
@@ -179,11 +176,11 @@ const isLoadingHingesListAC = (isLoading) => {
 };
 
 
+
 export const getHingesListTC = () => {
     return async (dispatch) => {
         dispatch(isLoadingHingesListAC(true));
         let response = await(fireBaseAPI.getHingesList())
-        console.log(response)
         dispatch(setHingesListAC(response))
         dispatch(isLoadingHingesListAC(false))
 

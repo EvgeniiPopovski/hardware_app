@@ -1,0 +1,67 @@
+.itemorderContainer {
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    padding-left: 15px;
+    align-items: flex-start;
+}
+.costHeader {
+    margin: 0;
+    text-align: center;
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.itemPrice {
+    color: blue;
+    &::after {
+        content: ' руб/шт';
+        color: black;
+    }
+}
+.quantity{
+    margin-bottom: 5px;
+    font-weight: 700;
+    font-size: 25px;
+}
+.itemDecrease , .itemIncrease{
+    display: inline-block;
+    width: 9%;
+    padding: 10px 0px;
+    text-align: center;
+    background-color: lightgray;
+    cursor: pointer;
+}
+.itemDecrease{
+    border-top-left-radius:5px; 
+    border-bottom-left-radius:5px; 
+}
+.itemIncrease {
+    border-top-right-radius:5px; 
+    border-bottom-right-radius:5px;
+}
+.itemCounter{
+    height: 38px;
+    width: 25%;
+    text-align: center;
+    background-color: rgb(240, 240, 240);
+    border: none;
+}
+.addToCartBtn , .addToFavourites {
+    width: 50%;
+    color: white;
+    font-size: 16px;
+    background-color: blue;
+    border-radius: 5px;
+    height: 38px;
+    border: 1px solid darkblue;
+    margin-left: 20px;
+}
+
+.addToFavourites {
+    width: 70%;
+    margin-top: 10px;
+    margin-left: 50px;
+
+}

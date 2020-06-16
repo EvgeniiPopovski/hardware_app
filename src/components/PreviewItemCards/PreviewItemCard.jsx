@@ -10,7 +10,7 @@ export const PreviewItemCard = (props) => {
 	return (
 		<div>
 			<div className={styles.propertyCard}>
-				<Link to={`/shower/showerHinges/hinge/${props.article}`}>
+				<Link to={`/shower/showerHinges/${props.article}`}>
 					<div className={styles.propertyImage} style={divImage}>
 						<div className={styles.propertyImageTitle}>
 							{/* <!-- Optional <h5>Card Title</h5> If you want it, turn on the CSS also. --> */}
@@ -25,11 +25,9 @@ export const PreviewItemCard = (props) => {
 					<span> </span>
 					<p className={styles.cardText}>{props.text}</p>
 				</div>
-				{/* <a href="#">
 					<div className={styles.propertySocialIcons}>
-						<!-- I would usually put multipe divs inside here set to flex. Some people might use Ul li. Multiple Solutions -->
+						{props.price}
 					</div>
-				</a> */}
 			</div>
 		</div>
 	);

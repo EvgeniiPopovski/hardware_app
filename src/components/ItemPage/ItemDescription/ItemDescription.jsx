@@ -20,25 +20,25 @@ export const ItemDescription = ({HingeInfo}) => {
 						<tr>
 							<td>Цвет</td>
 							<td className={styles.DescriptionTableValue}>
-								Значение цвета
+								{HingeInfo.description.color}
 							</td>
 						</tr>
 						<tr>
 							<td>Материал</td>
 							<td className={styles.DescriptionTableValue}>
-								Значение Материала
+							{HingeInfo.description.material}
 							</td>
 						</tr>
 						<tr>
 							<td>Толщина стекла</td>
 							<td className={styles.DescriptionTableValue}>
-								Значение Толщины
+								{HingeInfo.description.thikness}
 							</td>
 						</tr>
 						<tr>
 							<td>Нагрузка на пару </td>
 							<td className={styles.DescriptionTableValue}>
-								Значение Нагрузки
+								{HingeInfo.description.workload}
 							</td>
 						</tr>
 					</thead>

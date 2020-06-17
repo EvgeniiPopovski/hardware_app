@@ -27,7 +27,14 @@
             width: 100%
         }
     }
+    .miniSlideActive {
+        width: 20%;
+        &Pict{
+            width: 100%
+        }
+    }
 }
+
 
 .active {
     border: 1px solid blue;

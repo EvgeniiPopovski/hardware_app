@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import styles from "./ItemOrder.module.scss";
 import Preloader from "../../../common/Preloader/Preloader";
 
-export const ItemOrder = ({ HingeInfo }) => {
+export const ItemOrderMemo =  React.memo( function ItemOrder  ({ HingeInfo })  {
 	
 	
 	const [quantity, setQuantity] = useState(1)
 
 	
+	const setValue = (event) => {
+		return setQuantity(+event.currentTarget.value)
+	}
 	
 	if (!HingeInfo) {
 		return <Preloader />;
@@ -20,20 +23,19 @@ export const ItemOrder = ({ HingeInfo }) => {
 			</p>
 			<div>
 				<p className={styles.quantity}>Количество</p>
-				<span className={styles.itemDecrease} onClick={() =>setQuantity(quantity-1)}>-</span>
+				<button disabled={quantity===1 && true} className={styles.itemDecrease} onClick={() =>setQuantity(quantity-1)} >-</button>
 				<input
 					className={styles.itemCounter}
 					step="1"
 					min="1"
 					type="text"
-					defaultValue={quantity}
+					value={quantity}
+					onChange={(event) => setValue(event)}
 				/>
-				<span className={styles.itemIncrease} onClick={ () => setQuantity(quantity+1)} >+</span>
-				{console.log(quantity)}
+				<button className={styles.itemIncrease} onClick={ () => setQuantity(quantity+1)} >+</button>
 				<button className={styles.addToCartBtn}>Добавить в корзину</button>
-
 				<button className={styles.addToFavourites}>Добавить в избранное</button>
 			</div>
 		</div>
 	);
-};
+});

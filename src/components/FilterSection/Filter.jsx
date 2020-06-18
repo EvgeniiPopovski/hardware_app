@@ -9,6 +9,8 @@ const Filter = ({
 	zinkFilter,
 	chromeColorFilter,
 	setchromeColorFilter,
+	blackColorFilter,
+	setBlackColorFilter
 }) => {
 	let materialsArray = hingesList.map((hinge) => hinge.description.material);
 	let materialsFilterd = [];
@@ -17,7 +19,7 @@ const Filter = ({
 			materialsFilterd.push(str);
 		}
 	}
-
+	
 	let materialCheckboxes = materialsFilterd.map((material) => {
 		let value = "brass";
 		let setFilter = setbrassFilter;
@@ -30,37 +32,6 @@ const Filter = ({
 		return (
 			<>
 				<label key={material}>
-					{material}{" "}
-					<input
-						type="checkbox"
-						name="filter"
-						value={value}
-						onChange={() => {
-							setFilter(!filterOption);
-							console.log(brassFilter, zinkFilter);
-						}}
-					/>
-				</label>{" "}
-				<br />
-			</>
-		);
-	});
-
-	let colorsArray = hingesList.map((hinge) => hinge.description.color);
-	let colorsFilterd = [];
-	for (let str of colorsArray) {
-		if (!colorsFilterd.includes(str)) {
-			colorsFilterd.push(str);
-		}
-	}
-
-	let colorCheckboxes = colorsFilterd.map((material) => {
-		let value = "хром";
-		let setFilter = setchromeColorFilter;
-		let filterOption = chromeColorFilter;
-		return (
-			<>
-				<label key={material}>
 					{material}
 					<input
 						type="checkbox"
@@ -68,6 +39,44 @@ const Filter = ({
 						value={value}
 						onChange={() => {
 							setFilter(!filterOption);
+						}}
+					/>
+				</label>
+				<br />
+			</>
+		);
+	});
+
+
+	// TODO
+	let colorsArray = hingesList.map((hinge) => hinge.description.color);
+	let colorsFilterd = [];
+	for (let str of colorsArray) {
+		if (!colorsFilterd.includes(str)) {
+			colorsFilterd.push(str);
+		}
+	}
+	
+	let colorCheckboxes = colorsFilterd.map((color) => {
+		let value = "chrome";
+		let setColorFilter = setchromeColorFilter;
+		let filterColorOption = chromeColorFilter;
+		if (color == "черный") {
+			value = "black";
+			setColorFilter = setBlackColorFilter;
+			filterColorOption = blackColorFilter;
+		}
+		return (
+			<>
+				<label key={color}>
+					{color}
+					<input
+						type="checkbox"
+						name="filter"
+						value={value}
+						onChange={() => {
+							setColorFilter(!filterColorOption)
+							console.log(blackColorFilter , chromeColorFilter);
 						}}
 					/>
 				</label>

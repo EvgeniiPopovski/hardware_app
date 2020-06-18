@@ -1,25 +1,24 @@
 import React, { useState } from "react";
 import styles from "./ItemPhoto.module.scss";
 import Preloader from "../../../common/Preloader/Preloader";
-import { RedirectHOC } from "../ItemPageHOC";
-import { compose } from "redux";
+import { PreloaderHOC } from "../ItemPageHOC";
 
 
-export const ItemPhoto = ({HingeInfo}) => {
-	
+
+export const ItemPhoto = (props) => {
     
-    const [MainSlidePhoto, setMainSlidePhoto] = useState(HingeInfo.photoes.MainPhoto);
+    const [MainSlidePhoto, setMainSlidePhoto] = useState(props.photoes.MainPhoto);
 
-	if (!HingeInfo) {
+	if (!props) {
 		return <Preloader />;
 	}
 
-	const minislidesArray = Object.keys(HingeInfo.photoes);
+	const minislidesArray = Object.keys(props.photoes);
 	const minislides = minislidesArray.map((item, i) => {
 		return (
 			<div
 				className={
-					HingeInfo.photoes[item] === MainSlidePhoto
+					props.photoes[item] === MainSlidePhoto
 						? styles.miniSlide + " " + styles.active
 						: styles.miniSlide
 				}
@@ -28,7 +27,7 @@ export const ItemPhoto = ({HingeInfo}) => {
 			>
 				<img
 					className={styles.miniSlidePict}
-					src={HingeInfo.photoes[item]}
+					src={props.photoes[item]}
                     alt=""
                     onClick={(event) => setMainSlidePhoto(event.currentTarget.src)}
 				/>
@@ -46,9 +45,7 @@ export const ItemPhoto = ({HingeInfo}) => {
 	);
 };
 
-
-
-export default  RedirectHOC(ItemPhoto) 
+export default  PreloaderHOC(ItemPhoto) 
 
 
 

@@ -1,8 +1,8 @@
 import React from 'react'
-import { Redirect } from "react-router";
+import {  withRouter } from "react-router";
 import {connect} from 'react-redux'
 import Preloader from '../../common/Preloader/Preloader';
-import { createRenderer } from 'react-dom/test-utils';
+
 
 
 
@@ -11,25 +11,23 @@ let mapStateToProps = (state) => {
         HingeInfo : state.HingesList.Hinges
     }
 }
-export const RedirectHOC = (Component) => { 
+export const PreloaderHOC = (Component) => { 
     
     class RedirectComponent extends React.Component {
-        
-        componentDidUpdate (prevProps) {
-            if (this.props.HingeInfo.length !== prevProps.HingeInfo.length) {
-                debugger
-                <Component {...this.props}/>
-            }
+        filter() {
+                const filteredItem =  this.props.HingeInfo.filter( (hinge) => hinge.ArticleNumber === this.props.match.params.article )
+            return filteredItem[0]
         }
         render() {
-            if (this.props.HingeInfo) {
-                return <Preloader {...this.props}/>
+            if (this.props.HingeInfo.length) {
+                return <Component {...this.filter()}/>
             }
-            console.log(this.props.HingeInfo)
-            return <Component {...this.props}/>
+            
+            return <Preloader/>
         }
     }
 
-    let ConnectedRedirectComponent = connect(mapStateToProps) (RedirectComponent) 
+    let ConnectedRedirectComponent = withRouter( connect(mapStateToProps) (RedirectComponent) )
     return ConnectedRedirectComponent
 }
+

@@ -1,4 +1,5 @@
 import { fireBaseAPI } from "./../API/HardwareAPI";
+import { setFilterStateAC } from './filterReduser'
 
 const SET_HINGES_LIST = "SET_HINGES_LIST";
 const IS_LOADING = "HINGES_LIST_IS_LOADING";
@@ -177,6 +178,7 @@ export const getHingesListTC = () => {
 	return async (dispatch) => {
 		dispatch(isLoadingHingesListAC(true));
 		let response = await fireBaseAPI.getHingesList();
+		// dispatch(setFilterStateAC(response))
 		dispatch(setHingesListAC(response));
 		dispatch(isLoadingHingesListAC(false));
 	};

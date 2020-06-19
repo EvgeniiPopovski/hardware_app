@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./ItemOrder.module.scss";
-import Preloader from "../../../common/Preloader/Preloader";
+import Preloader from "../../../common/Preloader/Preloader"
+import { Button } from '@material-ui/core'
 
 export const ItemOrderMemo =  React.memo( function ItemOrder  ({ HingeInfo })  {
 	
@@ -33,6 +34,7 @@ export const ItemOrderMemo =  React.memo( function ItemOrder  ({ HingeInfo })  {
 					onChange={(event) => setValue(event)}
 				/>
 				<button className={styles.itemIncrease} onClick={ () => setQuantity(quantity+1)} >+</button>
+				{/* <Button color='primary'> Добавить в корзину</Button> */}
 				<button className={styles.addToCartBtn}>Добавить в корзину</button>
 				<button className={styles.addToFavourites}>Добавить в избранное</button>
 			</div>

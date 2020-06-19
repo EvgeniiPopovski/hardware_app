@@ -1,98 +1,29 @@
 import React from "react";
 import styles from "./Filter.module.scss";
 
-const Filter = ({
-	hingesList,
-	setzinkFilter,
-	setbrassFilter,
-	brassFilter,
-	zinkFilter,
-	chromeColorFilter,
-	setchromeColorFilter,
-	blackColorFilter,
-	setBlackColorFilter
-}) => {
-	let materialsArray = hingesList.map((hinge) => hinge.description.material);
-	let materialsFilterd = [];
-	for (let str of materialsArray) {
-		if (!materialsFilterd.includes(str)) {
-			materialsFilterd.push(str);
-		}
-	}
+const Filter = ({material,color, setMaterial}) => {
 	
-	let materialCheckboxes = materialsFilterd.map((material) => {
-		let value = "brass";
-		let setFilter = setbrassFilter;
-		let filterOption = brassFilter;
-		if (material == "цинковый сплав") {
-			value = "zink";
-			setFilter = setzinkFilter;
-			filterOption = zinkFilter;
+	const materialCheckboxes = []
+	for (let materialItem in material) {
+		
+		if (materialItem === 'zink') {
+			materialCheckboxes.push(<label> цинковый сплав<input type='checkbox' value={material} onChange={() => setMaterial({zink : !material.zink})} />  </label>)
 		}
-		return (
-			<>
-				<label key={material}>
-					{material}
-					<input
-						type="checkbox"
-						name="filter"
-						value={value}
-						onChange={() => {
-							setFilter(!filterOption);
-						}}
-					/>
-				</label>
-				<br />
-			</>
-		);
-	});
-
-
-	// TODO
-	let colorsArray = hingesList.map((hinge) => hinge.description.color);
-	let colorsFilterd = [];
-	for (let str of colorsArray) {
-		if (!colorsFilterd.includes(str)) {
-			colorsFilterd.push(str);
+		if (materialItem === 'brass') {
+			materialCheckboxes.push(<label> латунь<input type='checkbox' value={material} onChange={() => setMaterial(!materialItem)} />  </label>)
 		}
-	}
-	
-	let colorCheckboxes = colorsFilterd.map((color) => {
-		let value = "chrome";
-		let setColorFilter = setchromeColorFilter;
-		let filterColorOption = chromeColorFilter;
-		if (color == "черный") {
-			value = "black";
-			setColorFilter = setBlackColorFilter;
-			filterColorOption = blackColorFilter;
-		}
-		return (
-			<>
-				<label key={color}>
-					{color}
-					<input
-						type="checkbox"
-						name="filter"
-						value={value}
-						onChange={() => {
-							setColorFilter(!filterColorOption)
-							console.log(blackColorFilter , chromeColorFilter);
-						}}
-					/>
-				</label>
-				<br />
-			</>
-		);
-	});
-
+	} 
+	console.log(materialCheckboxes)
 	return (
 		<div className={styles.filterSection}>
 			<form action="post" name="filter">
 				<p className={styles.filterHeader}>Материал</p>
+				
 				{materialCheckboxes}
+
 				<br />
 				<p className={styles.filterHeader}>Цвет</p>
-                {colorCheckboxes}
+                {/* {colorCheckboxes} */}
 			</form>
 		</div>
 	);

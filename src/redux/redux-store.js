@@ -3,13 +3,11 @@ import { MainBlocksReducer } from './mainBlocksReduser'
 import thunk from 'redux-thunk';
 import SemiSectionsReducer from './semiSectionsreducer';
 import { HingesListReduser } from './hingesListReduser';
-import { filterReduser } from './filterReduser';
 
 const reducers = combineReducers ({
     MainBlocks : MainBlocksReducer,
     SemiSections : SemiSectionsReducer,
-    HingesList : HingesListReduser,
-    Filter : filterReduser
+    HingesList : HingesListReduser
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

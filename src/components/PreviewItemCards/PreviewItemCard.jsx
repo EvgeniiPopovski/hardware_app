@@ -19,7 +19,6 @@ export const PreviewItemCard = (props) => {
 				</Link>
 				<div className={styles.propertyDescription}>
 					<h5 className={styles.cardTitle}>
-						{" "}
 						{props.header} {props.article}
 					</h5>
 					<span> </span>

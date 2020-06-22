@@ -12,7 +12,7 @@ export const ItemPhoto = (props) => {
 	if (!props) {
 		return <Preloader />;
 	}
-
+	
 	const minislidesArray = Object.keys(props.photoes);
 	const minislides = minislidesArray.map((item, i) => {
 		return (

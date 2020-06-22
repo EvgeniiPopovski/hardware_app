@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import styles from './ItemPage.module.scss'
 import  ItemPhoto  from './ItemPhoto/ItemPhoto'
 import { ItemDescription } from './ItemDescription/ItemDescription'
-import { ItemOrderMemo } from './ItemOrder/ItemOrder'
+import { ItemOrderContainer } from './ItemOrder/ItemOrderContainer'
 import { connect } from 'react-redux'
 import { getHingesListTC } from '../../redux/hingesListReduser'
 
@@ -22,7 +22,7 @@ const  ItemPageMemo = React.memo( function ItemPage ({hingesList, ...props})  {
     return(
         <div className={styles.Container}>
             <ItemPhoto HingeInfo={filteredItem[0]}/>
-            <ItemOrderMemo HingeInfo={filteredItem[0]}/>
+            <ItemOrderContainer HingeInfo={filteredItem[0]}/>
             <ItemDescription HingeInfo={filteredItem[0]}/>
         </div>
     )

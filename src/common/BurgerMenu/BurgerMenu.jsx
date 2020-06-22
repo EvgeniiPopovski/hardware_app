@@ -2,8 +2,10 @@ import React  from "react";
 import { NavLink, Link } from "react-router-dom";
 // import { MainContainer } from "./../../components/Main/Main";
 // import ShowerHardwareContainer from "./../../components/SemiSections/ShowerHardware//ShowerHardwareContainer";
-import BurgerButton from "../BurgerButton/BurgerButton";
+// import BurgerButton from "../BurgerButton/BurgerButton";
 import styles from'./BurgerMenu.module.scss'
+import {  Button, Tooltip } from "antd";
+import {MenuOutlined} from '@ant-design/icons'
 
 
 const BurgerMenu = ({isOpened , toggleMenuOpen}) => {
@@ -12,7 +14,9 @@ const BurgerMenu = ({isOpened , toggleMenuOpen}) => {
 	return (
 		<div  className={isOpened ? styles.burgerMenu : styles.burgerMenuClosed}>
 			<div className={styles.burgerMenuHeader}>
-				<BurgerButton toggleMenuOpen={toggleMenuOpen} />
+				<Tooltip title="Меню">
+					<Button shape='circle' onClick={toggleMenuOpen} icon={<MenuOutlined />} />
+				</Tooltip>
 				<Link className={styles.link} to="/" > Almaz-Luks </Link>
 			</div>
 

@@ -1,152 +1,13 @@
 import { fireBaseAPI } from "./../API/HardwareAPI";
-import { setFilterStateAC } from './filterReduser'
+
 
 const SET_HINGES_LIST = "SET_HINGES_LIST";
 const IS_LOADING = "HINGES_LIST_IS_LOADING";
+const ADD_TO_LIKED ="ADD_TO_LIKED";
+const  SET_IN_CART = "SET_IN_CART"
 let InitialState = {
 	isLoading: true,
-	Hinges: [
-		//     {
-		//         header: 'Петля стекло-стекло',
-		//         ArticleNumber: 'MF-003',
-		//         photoes: {
-		//             MainPhoto: './../../common/img/hinges/glass-glass_hinge_small.jpg',
-		//             SmallPhoto1: ' Nety poka',
-		//             Drawing: 'not fouund'
-		//         },
-		//         description: {
-		//             material: 'brass',
-		//             color: 'chrome'
-		//         },
-		//         price: '60'
-		//     },
-		//     {
-		//         header: 'Петля стена-стекло со смещением',
-		//         ArticleNumber: 'MF-001А',
-		//         photoes: {
-		//             MainPhoto: './../../common/img/hinges/wall-to-glass-3-points.jpg',
-		//             SmallPhoto1: ' Nety poka',
-		//             Drawing: 'not fouund'
-		//         },
-		//         description: {
-		//             material: 'brass',
-		//             color: 'chrome'
-		//         },
-		//         price: '40'
-		//     },
-		//     {
-		//         header: 'Петля стекло-стекло на угол 90 град.',
-		//         ArticleNumber: 'MF-004',
-		//         photoes: {
-		//             MainPhoto: './../../common/img/hinges/glass-to-glass-90deg.jpg',
-		//             SmallPhoto1: ' Nety poka',
-		//             Drawing: 'not fouund'
-		//         },
-		//         description: {
-		//             material: 'brass',
-		//             color: 'chrome'
-		//         },
-		//         price: '70'
-		//     },
-		//     {
-		//         header: 'Петля стекло-стекло',
-		//         ArticleNumber: 'MF-001',
-		//         photoes: {
-		//             MainPhoto: './../../common/img/hinges/wall-to-glass-4points.jpg',
-		//             SmallPhoto1: ' Nety poka',
-		//             Drawing: 'not fouund'
-		//         },
-		//         description: {
-		//             material: 'brass',
-		//             color: 'chrome'
-		//         },
-		//         price: '40'
-		//     },
-		//     {
-		//         header: 'Петля стекло-стекло на угол 135град.',
-		//         ArticleNumber: 'MF-002',
-		//         photoes: {
-		//             MainPhoto: './../../common/img/hinges/glass-to-glass-135deg.jpg',
-		//             SmallPhoto1: ' Nety poka',
-		//             Drawing: 'not fouund'
-		//         },
-		//         description: {
-		//             material: 'brass',
-		//             color: 'chrome'
-		//         },
-		//         price: '60'
-		//     },
-		//     {
-		//         header: 'Петля стекло-стекло (цинковый сплав)',
-		//         ArticleNumber: 'MF-003 zn',
-		//         photoes: {
-		//             MainPhoto: './../../common/img/hinges/glass-glass_hinge_small.jpg',
-		//             SmallPhoto1: ' Nety poka',
-		//             Drawing: 'not fouund'
-		//         },
-		//         description: {
-		//             material: 'zink',
-		//             color: 'chrome'
-		//         },
-		//         price: '35'
-		//     },
-		//     {
-		//         header: 'Петля стена-стекло со смещением (цинковый сплав)',
-		//         ArticleNumber: 'MF-001А zn',
-		//         photoes: {
-		//             MainPhoto: './../../common/img/hinges/wall-to-glass-3-points.jpg',
-		//             SmallPhoto1: ' Nety poka',
-		//             Drawing: 'not fouund'
-		//         },
-		//         description: {
-		//             material: 'zink',
-		//             color: 'chrome'
-		//         },
-		//         price: '25'
-		//     },
-		//     {
-		//         header: 'Петля стекло-стекло на угол 90 град. (цинковый сплав)',
-		//         ArticleNumber: 'MF-004 zn',
-		//         photoes: {
-		//             MainPhoto: './../../common/img/hinges/glass-to-glass-90deg.jpg',
-		//             SmallPhoto1: ' Nety poka',
-		//             Drawing: 'not fouund'
-		//         },
-		//         description: {
-		//             material: 'zink',
-		//             color: 'chrome'
-		//         },
-		//         price: '35'
-		//     },
-		//     {
-		//         header: 'Петля стекло-стекло (цинковый сплав)',
-		//         ArticleNumber: 'MF-001 zn',
-		//         photoes: {
-		//             MainPhoto: './../../common/img/hinges/wall-to-glass-4points.jpg',
-		//             SmallPhoto1: ' Nety poka',
-		//             Drawing: 'not fouund'
-		//         },
-		//         description: {
-		//             material: 'zink',
-		//             color: 'chrome'
-		//         },
-		//         price: '25'
-		//     },
-		//     {
-		//         header: 'Петля стекло-стекло на угол 135град. (цинковый сплав)',
-		//         ArticleNumber: 'MF-002 zn',
-		//         photoes: {
-		//             MainPhoto: './../../common/img/hinges/glass-to-glass-135deg.jpg',
-		//             SmallPhoto1: ' Nety poka',
-		//             Drawing: 'not fouund'
-		//         },
-		//         description: {
-		//             material: 'zink',
-		//             color: 'chrome'
-		//         },
-		//         price: '35'
-		//     }
-	],
+	Hinges: [],
 };
 
 export const HingesListReduser = (state = InitialState, action) => {
@@ -161,6 +22,22 @@ export const HingesListReduser = (state = InitialState, action) => {
 			stateCopy.isLoading = action.isLoading;
 			return stateCopy;
 		}
+		case SET_IN_CART : {
+			let stateCopy = {...state, Hinges: [...state.Hinges]}
+			stateCopy.Hinges[state.Hinges.indexOf(action.item)] = {...state.Hinges[state.Hinges.indexOf(action.item)]}
+			stateCopy.Hinges[state.Hinges.indexOf(action.item)].cartInfo = {...state.Hinges[state.Hinges.indexOf(action.item)].cartInfo}
+			stateCopy.Hinges[state.Hinges.indexOf(action.item)].cartInfo = {...state.Hinges[state.Hinges.indexOf(action.item)].cartInfo, isInCart : action.isInCart , cartQuantity : action.quantity }
+			return stateCopy
+		}
+		case ADD_TO_LIKED : {
+			let stateCopy = {...state, Hinges: [...state.Hinges]}
+			stateCopy.Hinges[state.Hinges.indexOf(action.item)] = {...state.Hinges[state.Hinges.indexOf(action.item)]}
+			stateCopy.Hinges[state.Hinges.indexOf(action.item)] = {...state.Hinges[state.Hinges.indexOf(action.item)] , isInLiked : !state.Hinges[state.Hinges.indexOf(action.item)].isInLiked}
+			console.log({...state.Hinges[state.Hinges.indexOf(action.item)]})
+			return stateCopy
+		}
+		
+		
 		default:
 			return state;
 	}
@@ -174,11 +51,19 @@ const isLoadingHingesListAC = (isLoading) => {
 	return { type: IS_LOADING, isLoading };
 };
 
+export const setInCart = (item , isInCart , quantity ) => { 
+	return {type : SET_IN_CART , item ,isInCart , quantity}
+}
+export const addToLikedAC = (item) => {
+	return {type : ADD_TO_LIKED , item}
+}
+
+
+
 export const getHingesListTC = () => {
 	return async (dispatch) => {
 		dispatch(isLoadingHingesListAC(true));
 		let response = await fireBaseAPI.getHingesList();
-		// dispatch(setFilterStateAC(response))
 		dispatch(setHingesListAC(response));
 		dispatch(isLoadingHingesListAC(false));
 	};

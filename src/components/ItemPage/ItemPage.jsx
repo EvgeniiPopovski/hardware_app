@@ -4,9 +4,10 @@ import  ItemPhoto  from './ItemPhoto/ItemPhoto'
 import { ItemDescription } from './ItemDescription/ItemDescription'
 
 import { connect } from 'react-redux'
-import { getHingesListTC, setInCart, addToLikedAC } from '../../redux/hingesListReduser'
+import { getHingesListTC, setInCart, isLikedToggleAC } from '../../redux/hingesListReduser'
 import { addToCartAC, removeFromCartAC } from '../../redux/cartReducer'
 import { ItemOrderMemo } from './ItemOrder/ItemOrder'
+import { addToLikedAC, removeFromLikedAC } from '../../redux/likedItemsReducer'
 
 
 
@@ -43,8 +44,10 @@ const mapDispatchToProps = (dispatch) => {
         getHingesList : () => {dispatch(getHingesListTC())},
         addToCart : (item , isInCart , quantity) => {dispatch(addToCartAC(item , isInCart , quantity))},
         setInCart : (item , isInCart , quantity) => {dispatch(setInCart(item , isInCart , quantity))},
-        addToLiked: (item) => {dispatch(addToLikedAC(item))},
+        isLikedToggle: (item) => {dispatch(isLikedToggleAC(item))},
         removeFromCart: (item) => {dispatch(removeFromCartAC(item))},
+        addToLiked : (item , isInLiked) => {dispatch(addToLikedAC(item, isInLiked))},
+        removeFromLiked : (item) => {dispatch(removeFromLikedAC(item))} 
 
     }
 }

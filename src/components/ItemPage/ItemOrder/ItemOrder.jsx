@@ -14,8 +14,10 @@ export const ItemOrderMemo = React.memo(function ItemOrder({
 	HingeInfo,
 	addToCart,
 	setInCart,
-	addToLiked,
+	isLikedToggle,
 	removeFromCart,
+	addToLiked,
+	removeFromLiked
 }) {
 	const [quantity, setQuantity] = useState(1);
 
@@ -30,11 +32,13 @@ export const ItemOrderMemo = React.memo(function ItemOrder({
 	return (
 		<div className={styles.itemorderContainer}>
 			<p className={styles.costHeader}>
-				Стоимость 
+				Стоимость
 				<span className={styles.itemPrice}>{HingeInfo.price}</span>
 			</p>
 			<div>
-				<p className={styles.quantity}>Количество {quantity} на сумму {HingeInfo.price * quantity} руб.</p>
+				<p className={styles.quantity}>
+					Количество {quantity} на сумму {HingeInfo.price * quantity} руб.
+				</p>
 				<Tooltip title="уменьшить">
 					<Button
 						type={"primary"}
@@ -58,7 +62,6 @@ export const ItemOrderMemo = React.memo(function ItemOrder({
 						onClick={() => setQuantity(quantity + 1)}
 					/>
 				</Tooltip>
-
 				{HingeInfo.cartInfo.isInCart ? (
 					<Button
 						icon={<ShoppingCartOutlined />}
@@ -77,20 +80,36 @@ export const ItemOrderMemo = React.memo(function ItemOrder({
 						onClick={() => {
 							setInCart(HingeInfo, true, quantity);
 							addToCart(HingeInfo, true, quantity);
-							
 						}}
 					>
 						Добавить в корзину
 					</Button>
 				)}
-				<Button
-					icon={<LikeOutlined />}
-					type={"primary"}
-					className={styles.addToFavourites}
-					onClick={() => addToLiked(HingeInfo)}
-				>
-					Добавить в избранное
-				</Button>
+
+				{HingeInfo.isInLiked ? (
+					<Button
+						icon={<LikeOutlined />}
+						className={styles.addToFavourites}
+						onClick={() => {
+							removeFromLiked(HingeInfo);
+							isLikedToggle(HingeInfo);
+						}}
+					>
+						Убрать из избранного
+					</Button>
+				) : (
+					<Button
+						icon={<LikeOutlined />}
+						type={"primary"}
+						className={styles.addToFavourites}
+						onClick={() => {
+							isLikedToggle(HingeInfo , true);
+							setTimeout(() =>  addToLiked(HingeInfo , true), 300)  ;
+						}}
+					>
+						Добавить в избранное
+					</Button>
+				)}
 			</div>
 		</div>
 	);

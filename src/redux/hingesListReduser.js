@@ -3,7 +3,7 @@ import { fireBaseAPI } from "./../API/HardwareAPI";
 
 const SET_HINGES_LIST = "SET_HINGES_LIST";
 const IS_LOADING = "HINGES_LIST_IS_LOADING";
-const ADD_TO_LIKED ="ADD_TO_LIKED";
+const IS_LIKED_TOGGLE ="IS_LIKED_TOGGLE";
 const  SET_IN_CART = "SET_IN_CART"
 let InitialState = {
 	isLoading: true,
@@ -29,7 +29,7 @@ export const HingesListReduser = (state = InitialState, action) => {
 			stateCopy.Hinges[state.Hinges.indexOf(action.item)].cartInfo = {...state.Hinges[state.Hinges.indexOf(action.item)].cartInfo, isInCart : action.isInCart , cartQuantity : action.quantity }
 			return stateCopy
 		}
-		case ADD_TO_LIKED : {
+		case IS_LIKED_TOGGLE : {
 			let stateCopy = {...state, Hinges: [...state.Hinges]}
 			stateCopy.Hinges[state.Hinges.indexOf(action.item)] = {...state.Hinges[state.Hinges.indexOf(action.item)]}
 			stateCopy.Hinges[state.Hinges.indexOf(action.item)] = {...state.Hinges[state.Hinges.indexOf(action.item)] , isInLiked : !state.Hinges[state.Hinges.indexOf(action.item)].isInLiked}
@@ -53,8 +53,8 @@ const isLoadingHingesListAC = (isLoading) => {
 export const setInCart = (item , isInCart , quantity ) => { 
 	return {type : SET_IN_CART , item ,isInCart , quantity}
 }
-export const addToLikedAC = (item) => {
-	return {type : ADD_TO_LIKED , item}
+export const isLikedToggleAC = (item) => {
+	return {type : IS_LIKED_TOGGLE , item}
 }
 
 

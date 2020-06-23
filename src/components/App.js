@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Header } from "./Header/Header";
 import { MainContainer } from "./Main/Main";
 import { BrowserRouter, Route } from "react-router-dom";
 import ShowerHardwareContainer from "./SemiSections/ShowerHardware/ShowerHardwareContainer";
@@ -8,6 +7,7 @@ import './App.css'
 import { ItemsListContainer } from "./ItemsList/ItemsListContainer";
 import { ItemPageContainer } from "./ItemPage/ItemPage";
 import { CartComponent } from "./Cart/CartComponent";
+import { HeaderContainer } from "./Header/HeaderContainer";
 
 
 function App() {
@@ -20,7 +20,9 @@ function App() {
 	return (
 		<div>
 			<BrowserRouter>
-				<Header toggleMenuOpen={toggleMenuOpen} />
+				<HeaderContainer toggleMenuOpen={toggleMenuOpen} />
+
+
 				<BurgerMenu toggleMenuOpen={toggleMenuOpen} isOpened={isOpened} />
 				<Route exact path="/" component={MainContainer} />
 				<Route exact path="/shower" component={ShowerHardwareContainer} />

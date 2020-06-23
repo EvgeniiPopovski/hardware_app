@@ -33,7 +33,6 @@ export const HingesListReduser = (state = InitialState, action) => {
 			let stateCopy = {...state, Hinges: [...state.Hinges]}
 			stateCopy.Hinges[state.Hinges.indexOf(action.item)] = {...state.Hinges[state.Hinges.indexOf(action.item)]}
 			stateCopy.Hinges[state.Hinges.indexOf(action.item)] = {...state.Hinges[state.Hinges.indexOf(action.item)] , isInLiked : !state.Hinges[state.Hinges.indexOf(action.item)].isInLiked}
-			console.log({...state.Hinges[state.Hinges.indexOf(action.item)]})
 			return stateCopy
 		}
 		

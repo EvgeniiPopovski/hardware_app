@@ -6,7 +6,18 @@ import { Input, Button, Tooltip } from "antd";
 import {MenuOutlined , ShoppingCartOutlined} from '@ant-design/icons'
 const { Search } = Input;
 
-export const Header = ({ toggleMenuOpen, isOpened }) => {
+export const Header = ({ toggleMenuOpen, cartItemList}) => {
+
+
+	
+
+	let cartButtonSum = 0
+
+	for (let item of cartItemList) {
+		cartButtonSum += (item.price*item.cartInfo.cartQuantity)
+	}
+	
+
 	return (
 		<div className={styles.headerContainer}>
 			<div className={styles.menuBurgerContainer}>
@@ -29,8 +40,8 @@ export const Header = ({ toggleMenuOpen, isOpened }) => {
 				/>
 			</div>
 			<Link to="/cart" >
-				<Tooltip title="Меню">
-					<Button  type='primary' icon={<ShoppingCartOutlined />} > Your Order <span></span> /BYN </Button>
+				<Tooltip title="Корзина">
+					<Button  type='primary' icon={<ShoppingCartOutlined />} >{cartButtonSum ===0 ? 'Ваша корзина пуста' : `Заказ на сумму ${cartButtonSum} руб`} </Button>
 				</Tooltip>
 			</Link>
 		</div>

@@ -2,9 +2,11 @@ import React, { useEffect } from 'react'
 import styles from './ItemPage.module.scss'
 import  ItemPhoto  from './ItemPhoto/ItemPhoto'
 import { ItemDescription } from './ItemDescription/ItemDescription'
-import { ItemOrderContainer } from './ItemOrder/ItemOrderContainer'
+
 import { connect } from 'react-redux'
-import { getHingesListTC } from '../../redux/hingesListReduser'
+import { getHingesListTC, setInCart, addToLikedAC } from '../../redux/hingesListReduser'
+import { addToCartAC, removeFromCartAC } from '../../redux/cartReducer'
+import { ItemOrderMemo } from './ItemOrder/ItemOrder'
 
 
 
@@ -22,7 +24,7 @@ const  ItemPageMemo = React.memo( function ItemPage ({hingesList, ...props})  {
     return(
         <div className={styles.Container}>
             <ItemPhoto HingeInfo={filteredItem[0]}/>
-            <ItemOrderContainer HingeInfo={filteredItem[0]}/>
+            <ItemOrderMemo {...props} HingeInfo={filteredItem[0]}/>
             <ItemDescription HingeInfo={filteredItem[0]}/>
         </div>
     )
@@ -33,12 +35,17 @@ const  ItemPageMemo = React.memo( function ItemPage ({hingesList, ...props})  {
 const mapStateToProps = (state) => {
     return {
         hingesList: state.HingesList.Hinges,
-        isLoading : state.HingesList.isLoading
+        isLoading : state.HingesList.isLoading,
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        getHingesList : () => {dispatch(getHingesListTC())}
+        getHingesList : () => {dispatch(getHingesListTC())},
+        addToCart : (item , isInCart , quantity) => {dispatch(addToCartAC(item , isInCart , quantity))},
+        setInCart : (item , isInCart , quantity) => {dispatch(setInCart(item , isInCart , quantity))},
+        addToLiked: (item) => {dispatch(addToLikedAC(item))},
+        removeFromCart: (item) => {dispatch(removeFromCartAC(item))},
+
     }
 }
 

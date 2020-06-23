@@ -14,7 +14,8 @@ export const ItemOrderMemo = React.memo(function ItemOrder({
 	HingeInfo,
 	addToCart,
 	setInCart,
-	addToLiked
+	addToLiked,
+	removeFromCart,
 }) {
 	const [quantity, setQuantity] = useState(1);
 
@@ -26,18 +27,14 @@ export const ItemOrderMemo = React.memo(function ItemOrder({
 		return <Preloader />;
 	}
 
-	const onAddToCart = (Item, quantity) => {
-		setInCart(Item, true, quantity);
-		addToCart(HingeInfo)
-	};
-
 	return (
 		<div className={styles.itemorderContainer}>
 			<p className={styles.costHeader}>
-				Стоимость <span className={styles.itemPrice}>{HingeInfo.price * quantity}</span>
+				Стоимость 
+				<span className={styles.itemPrice}>{HingeInfo.price}</span>
 			</p>
 			<div>
-				<p className={styles.quantity}>Количество</p>
+				<p className={styles.quantity}>Количество {quantity} на сумму {HingeInfo.price * quantity} руб.</p>
 				<Tooltip title="уменьшить">
 					<Button
 						type={"primary"}
@@ -61,22 +58,36 @@ export const ItemOrderMemo = React.memo(function ItemOrder({
 						onClick={() => setQuantity(quantity + 1)}
 					/>
 				</Tooltip>
-				{/* <button className={styles.itemIncrease} onClick={ () => setQuantity(quantity+1)} >+</button> */}
-				<Button
-					icon={<ShoppingCartOutlined />}
-					type={"primary"}
-					className={styles.addToCartBtn}
-					onClick={() => {
-						onAddToCart(HingeInfo, quantity);
-					}}
-				>
-					Добавить в корзину
-				</Button>
+
+				{HingeInfo.cartInfo.isInCart ? (
+					<Button
+						icon={<ShoppingCartOutlined />}
+						onClick={() => {
+							removeFromCart(HingeInfo);
+							setInCart(HingeInfo, false, 0);
+						}}
+					>
+						Убрать из корзины
+					</Button>
+				) : (
+					<Button
+						icon={<ShoppingCartOutlined />}
+						type={"primary"}
+						className={styles.addToCartBtn}
+						onClick={() => {
+							setInCart(HingeInfo, true, quantity);
+							addToCart(HingeInfo, true, quantity);
+							
+						}}
+					>
+						Добавить в корзину
+					</Button>
+				)}
 				<Button
 					icon={<LikeOutlined />}
 					type={"primary"}
 					className={styles.addToFavourites}
-					onClick ={()=> {addToLiked(HingeInfo)}}
+					onClick={() => addToLiked(HingeInfo)}
 				>
 					Добавить в избранное
 				</Button>

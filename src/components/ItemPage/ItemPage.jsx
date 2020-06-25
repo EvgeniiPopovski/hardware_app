@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import { getHingesListTC, setInCart, isLikedToggleAC } from '../../redux/hingesListReduser'
 import { addToCartAC, removeFromCartAC } from '../../redux/cartReducer'
 import { ItemOrderMemo } from './ItemOrder/ItemOrder'
-import { addToLikedAC, removeFromLikedAC } from '../../redux/likedItemsReducer'
+import { addToLikedTC, removeFromLikedTC, setLikedItemsTC } from '../../redux/likedItemsReducer'
 
 
 
@@ -46,8 +46,9 @@ const mapDispatchToProps = (dispatch) => {
         setInCart : (item , isInCart , quantity) => {dispatch(setInCart(item , isInCart , quantity))},
         isLikedToggle: (item) => {dispatch(isLikedToggleAC(item))},
         removeFromCart: (item) => {dispatch(removeFromCartAC(item))},
-        addToLiked : (item , isInLiked) => {dispatch(addToLikedAC(item, isInLiked))},
-        removeFromLiked : (item) => {dispatch(removeFromLikedAC(item))} 
+        addToLikedTC : (item , isInLiked) => {dispatch(addToLikedTC(item , isInLiked))},
+        // removeFromLikedTC : (item) => {dispatch(removeFromLikedTC(item))},
+        setLikedItemsTC : () => {dispatch(setLikedItemsTC())}
 
     }
 }

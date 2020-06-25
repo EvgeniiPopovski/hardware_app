@@ -67,3 +67,10 @@ export const getHingesListTC = () => {
 		dispatch(isLoadingHingesListAC(false));
 	};
 };
+
+export const setIsLikedToggleTC = (itemInfo) => {
+	return async (dispatch) => {
+		// dispatch(isLikedToggleAC (itemInfo))
+		// let response = 
+	}
+}

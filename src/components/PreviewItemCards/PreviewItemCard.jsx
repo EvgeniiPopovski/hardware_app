@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./PreviewItemCard.module.scss";
 import { Link } from "react-router-dom";
+import { StarFilled , StarOutlined} from '@ant-design/icons'
+
 
 export const PreviewItemCard = (props) => {
 	let divImage = {
@@ -10,6 +12,7 @@ export const PreviewItemCard = (props) => {
 	return (
 		<div>
 			<div className={styles.propertyCard}>
+				{props.isInLiked ? <StarFilled className={styles.starFilled} /> : <StarOutlined className={styles.starOutlined}/>}
 				<Link to={`/shower/showerHinges/${props.article}`}>
 					<div className={styles.propertyImage} style={divImage}>
 						<div className={styles.propertyImageTitle}>

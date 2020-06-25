@@ -51,6 +51,7 @@ export const ItemsList = ({ hingesList, getHingesList }) => {
 			color={hinge.description.color}
 			price={hinge.price}
 			text={hinge.description.text}
+			isInLiked={hinge.isInLiked}
 		/>
 	));
 

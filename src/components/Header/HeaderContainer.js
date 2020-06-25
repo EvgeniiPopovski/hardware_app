@@ -3,7 +3,7 @@ import { Header } from "./Header"
 
 const mapStateToProps = (state) => {
     return {
-        cartItemList : state.CartReduser
+        cartItemList : state.Cart
     }
 }
 

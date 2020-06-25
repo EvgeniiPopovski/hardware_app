@@ -16,8 +16,9 @@ export const ItemOrderMemo = React.memo(function ItemOrder({
 	setInCart,
 	isLikedToggle,
 	removeFromCart,
-	addToLiked,
-	removeFromLiked
+	addToLikedTC,
+	// removeFromLikedTC,
+	setLikedItemsTC
 }) {
 	const [quantity, setQuantity] = useState(1);
 
@@ -91,7 +92,7 @@ export const ItemOrderMemo = React.memo(function ItemOrder({
 						icon={<LikeOutlined />}
 						className={styles.addToFavourites}
 						onClick={() => {
-							removeFromLiked(HingeInfo);
+							// removeFromLikedTC(HingeInfo);
 							isLikedToggle(HingeInfo);
 						}}
 					>
@@ -104,7 +105,7 @@ export const ItemOrderMemo = React.memo(function ItemOrder({
 						className={styles.addToFavourites}
 						onClick={() => {
 							isLikedToggle(HingeInfo , true);
-							setTimeout(() =>  addToLiked(HingeInfo , true), 300)  ;
+							setTimeout(() => {addToLikedTC(HingeInfo , true);  setLikedItemsTC()} , 300) ;
 						}}
 					>
 						Добавить в избранное

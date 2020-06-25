@@ -10,7 +10,7 @@ const Filter = ({
 	onColorChange,
 	valueColor,
 }) => {
-	console.log(materials);
+	
 	let materialCheckboxes = materials.map((material) => (
 		<>
 		<label className="material" key={material}>
@@ -38,7 +38,7 @@ const Filter = ({
 			<br />
 		</>
 	));
-	console.log(materials);
+	
 	return (
 		<div className={styles.filterSection}>
 			<form action="post" name="filter">

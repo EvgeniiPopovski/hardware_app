@@ -10,8 +10,8 @@ const reducers = combineReducers ({
     MainBlocks : MainBlocksReducer,
     SemiSections : SemiSectionsReducer,
     HingesList : HingesListReduser,
-    CartReduser : cartReduser,
-    LikedItemsReduer : likedItemsReducer
+    Cart : cartReduser,
+    LikedItems : likedItemsReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

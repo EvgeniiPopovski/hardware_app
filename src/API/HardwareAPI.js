@@ -20,7 +20,23 @@ export  const fireBaseAPI = {
     async getHingesList () {
         let response = await instance.get(`/HingesList.json`);
         return response.data
+    },
+    async getLikedList () {
+        let response = await instance.get(`/LikedItems.json`)
+        return response
+    },
+    async addToLiked (item) {
+        let response = await instance.post('/LikedItems/.json' , JSON.stringify(item))
+        return response 
+    },
+    async removeFromLiked (item) {  
+        let response  = await instance.delete()
+        console.log(response)
+        return response
     }
 }
+
+
+
 
 

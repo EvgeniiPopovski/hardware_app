@@ -8,13 +8,14 @@ const { Search } = Input;
 
 export const Header = ({ toggleMenuOpen, cartItemList}) => {
 
-
 	
 
 	let cartButtonSum = 0
 
-	for (let item of cartItemList) {
-		cartButtonSum += (item.price*item.cartInfo.cartQuantity)
+	if (cartItemList) {
+		for(let key in cartItemList){
+			cartButtonSum += cartItemList[key].cartInfo.cartQuantity * cartItemList[key].price
+		}
 	}
 	
 

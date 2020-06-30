@@ -1,10 +1,16 @@
+import { fireBaseAPI } from "../API/HardwareAPI";
 
 const InitinalState = [];
 const ADD_TO_CART = 'ADD_TO_CART';
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
+const GET_CART_ITEMS = 'GET_CART_ITEMS'
 
 export const cartReduser = (state =InitinalState , action) => {
     switch (action.type) {
+        case GET_CART_ITEMS: {
+            let stateCopy = [action.items]
+            return stateCopy
+        }
         case ADD_TO_CART:{
             let stateCopy = [...state , action.item]
             stateCopy[stateCopy.indexOf(action.item)].cartInfo = {...stateCopy[stateCopy.indexOf(action.item)].cartInfo.isInCart, isInCart: action.isInCart , cartQuantity : action.quantity}
@@ -21,9 +27,46 @@ export const cartReduser = (state =InitinalState , action) => {
     }
 }
 
-export const addToCartAC = (item , isInCart , quantity) => {
+const getCartItemsAC = (items) =>{
+    return {type : GET_CART_ITEMS , items  }
+}
+
+const addToCartAC = (item , isInCart , quantity) => {
     return {type : ADD_TO_CART , item ,isInCart , quantity}
 }
 export const removeFromCartAC = (item) => {
     return {type : REMOVE_FROM_CART, item}
 }
+
+export const getCartItemsTC = () => {
+    return async (dispatch) => {
+        let response = await fireBaseAPI.getCartItems ()
+        dispatch(getCartItemsAC(response.data))
+    }
+}
+
+
+export const addToCartTC = (item , isInCart , quantity) => {
+    return async (dispatch , getState) => {
+        dispatch(addToCartAC(item , isInCart , quantity))
+        let response = await fireBaseAPI.addToCart(getState().Cart[getState().Cart.length-1]) 
+        if (response.status === 200) {
+            dispatch(getCartItemsTC())
+        }
+    }
+}
+
+
+export const removeFromCartTC = (item) => {
+	return async (dispatch, getState) => {
+		let CartArray = getState().Cart[0];
+		for (let i in CartArray) {
+			if (CartArray[i].header === item.header) {
+				let response = await fireBaseAPI.removeFromCart(i);
+				if (response.status === 200) {
+					dispatch(getCartItemsTC());
+				}
+			}
+		}
+	};
+};

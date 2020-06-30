@@ -3,10 +3,18 @@ import styles from "./ItemsList.module.scss";
 import { PreviewItemCard } from "../PreviewItemCards/PreviewItemCard";
 import Filter from "./../FilterSection/Filter";
 
-export const ItemsList = ({ hingesList, getHingesList }) => {
+export const ItemsList = ({ hingesList, getHingesList , getCartItems, getLikedItems }) => {
 	useEffect(() => {
 		getHingesList();
 	}, []);
+
+	useEffect( () => {
+		getCartItems();
+	},[]) 
+
+	useEffect ( () => {
+		getLikedItems()
+	}, [])
 
 	const materials = React.useMemo(
 		() => [...new Set(hingesList.map((hinge) => hinge.description.material))],

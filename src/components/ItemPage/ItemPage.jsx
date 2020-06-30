@@ -4,10 +4,10 @@ import  ItemPhoto  from './ItemPhoto/ItemPhoto'
 import { ItemDescription } from './ItemDescription/ItemDescription'
 
 import { connect } from 'react-redux'
-import { getHingesListTC, setInCart, isLikedToggleAC } from '../../redux/hingesListReduser'
-import { addToCartAC, removeFromCartAC } from '../../redux/cartReducer'
+import { getHingesListTC,  setInLikedTC, setInCartTC } from '../../redux/hingesListReduser'
+import {  addToCartTC, removeFromCartTC, getCartItemsTC } from '../../redux/cartReducer'
 import { ItemOrderMemo } from './ItemOrder/ItemOrder'
-import { addToLikedTC, removeFromLikedTC, setLikedItemsTC } from '../../redux/likedItemsReducer'
+import { addToLikedTC, removeTC, setLikedItemsTC } from '../../redux/likedItemsReducer'
 
 
 
@@ -17,7 +17,14 @@ const  ItemPageMemo = React.memo( function ItemPage ({hingesList, ...props})  {
     useEffect(() => {
         props.getHingesList();
     }, [])
+    useEffect( () => {
+		props.getCartItems();
+	},[]) 
 
+	useEffect ( () => {
+		props.getLikedItems()
+    }, [])
+    
     const filteredItem = hingesList.filter( (hinge) => hinge.ArticleNumber === props.match.params.article )
     
 
@@ -42,14 +49,14 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getHingesList : () => {dispatch(getHingesListTC())},
-        addToCart : (item , isInCart , quantity) => {dispatch(addToCartAC(item , isInCart , quantity))},
-        setInCart : (item , isInCart , quantity) => {dispatch(setInCart(item , isInCart , quantity))},
-        isLikedToggle: (item) => {dispatch(isLikedToggleAC(item))},
-        removeFromCart: (item) => {dispatch(removeFromCartAC(item))},
-        addToLikedTC : (item , isInLiked) => {dispatch(addToLikedTC(item , isInLiked))},
-        // removeFromLikedTC : (item) => {dispatch(removeFromLikedTC(item))},
-        setLikedItemsTC : () => {dispatch(setLikedItemsTC())}
-
+        getCartItems: () => {dispatch(getCartItemsTC())},
+        getLikedItems: () => {dispatch(setLikedItemsTC())},
+        addToCart : (item , isInCart , quantity) => {dispatch(addToCartTC(item , isInCart , quantity))},
+        setInCart : (item , isInCart , quantity) => {dispatch(setInCartTC(item , isInCart , quantity))},
+        removeFromCart: (item) => {dispatch(removeFromCartTC(item))},
+        setInLiked : (item) => {dispatch(setInLikedTC(item))},
+        addToLikedTC : (item) => {dispatch(addToLikedTC(item))},
+        removeTC : (item) => {dispatch(removeTC(item))}
     }
 }
 

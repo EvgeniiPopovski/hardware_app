@@ -21,6 +21,10 @@ export  const fireBaseAPI = {
         let response = await instance.get(`/HingesList.json`);
         return response.data
     },
+    async toggleInLiked (item , itemIndex) {
+        let response = await instance.patch(`/HingesList/Hinges/${itemIndex}.json` , JSON.stringify(item))
+        return response
+    },
     async getLikedList () {
         let response = await instance.get(`/LikedItems.json`)
         return response
@@ -29,11 +33,23 @@ export  const fireBaseAPI = {
         let response = await instance.post('/LikedItems/.json' , JSON.stringify(item))
         return response 
     },
-    async removeFromLiked (item) {  
-        let response  = await instance.delete()
-        console.log(response)
+    async removeFromLiked (itemCode) {  
+        let response  = await instance.delete(`/LikedItems/${itemCode}.json`)
+        return response
+    },
+    async getCartItems () {
+        let response = await instance.get(`/ItemsCart.json`)
+        return response
+    },
+    async addToCart (item) {
+        let response = await instance.post (`/ItemsCart.json` , JSON.stringify(item))
+        return response
+    },
+    async removeFromCart (itemCode) {
+        let response = await instance.delete(`/ItemsCart/${itemCode}.json`)
         return response
     }
+
 }
 
 

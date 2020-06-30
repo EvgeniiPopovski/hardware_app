@@ -2,6 +2,8 @@
 import {connect} from "react-redux"
 import {ItemsList} from './ItemsList'
 import { getHingesListTC } from '../../redux/hingesListReduser'
+import { getCartItemsTC } from "../../redux/cartReducer"
+import { setLikedItemsTC } from "../../redux/likedItemsReducer"
 
 const mapStateToProps = (state) => {
     return {
@@ -12,7 +14,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getHingesList : () => {dispatch(getHingesListTC())}
+        getHingesList : () => {dispatch(getHingesListTC())},
+        getCartItems: () => {dispatch(getCartItemsTC())},
+        getLikedItems: () => {dispatch(setLikedItemsTC())}
     }
 }
 

@@ -1,7 +1,12 @@
-.container {
+.center{
+    display: flex;
+    justify-content: center;
     margin-top: 70px;
-    margin-left: 70px;
+}
+.wrapper {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
+    width: 900px;
 }

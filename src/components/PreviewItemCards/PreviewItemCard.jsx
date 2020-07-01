@@ -9,10 +9,20 @@ export const PreviewItemCard = (props) => {
 		backgroundImage: "url(" + props.mainPhoto + ")",
 	};
 
+
+
 	return (
 		<div>
 			<div className={styles.propertyCard}>
-				{props.isInLiked ? <StarFilled className={styles.starFilled} /> : <StarOutlined className={styles.starOutlined}/>}
+				{props.isInLiked 
+				? <StarFilled className={styles.starFilled} 
+					onClick={ () => {props.removeFromLiked(props.hingeInfo) 
+										props.setInLiked(props.hingeInfo)}} /> 
+
+				: <StarOutlined className={styles.starOutlined}
+					onClick={() => {props.setInLiked(props.hingeInfo)
+									props.addToLiked(props.hingeInfo)}} />}
+				
 				<Link to={`/shower/showerHinges/${props.article}`}>
 					<div className={styles.propertyImage} style={divImage}>
 						<div className={styles.propertyImageTitle}>

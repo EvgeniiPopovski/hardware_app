@@ -16,7 +16,7 @@ export const ItemOrderMemo = React.memo(function ItemOrder({
 	setInCart,
 	removeFromCart,
 	addToLikedTC,
-	removeTC,
+	removeFromLikedTC,
 	setInLiked,
 }) {
 	const [quantity, setQuantity] = useState(1);
@@ -42,7 +42,7 @@ export const ItemOrderMemo = React.memo(function ItemOrder({
 				<Tooltip title="уменьшить">
 					<Button
 						type={"primary"}
-						disabled={quantity <= 1 && true}
+						disabled={quantity <= 1 && true || HingeInfo.cartInfo.isInCart}
 						icon={<MinusOutlined />}
 						onClick={() => setQuantity(quantity - 1)}
 					/>
@@ -57,6 +57,7 @@ export const ItemOrderMemo = React.memo(function ItemOrder({
 				/>
 				<Tooltip title="увеличить">
 					<Button
+						disabled={HingeInfo.cartInfo.isInCart}
 						type={"primary"}
 						icon={<PlusOutlined />}
 						onClick={() => setQuantity(quantity + 1)}
@@ -91,7 +92,7 @@ export const ItemOrderMemo = React.memo(function ItemOrder({
 						icon={<LikeOutlined />}
 						className={styles.addToFavourites}
 						onClick={() => {
-							removeTC(HingeInfo);
+							removeFromLikedTC(HingeInfo);
 							setInLiked(HingeInfo);
 						}}
 					>

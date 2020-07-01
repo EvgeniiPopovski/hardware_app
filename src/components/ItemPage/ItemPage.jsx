@@ -56,7 +56,7 @@ const mapDispatchToProps = (dispatch) => {
         removeFromCart: (item) => {dispatch(removeFromCartTC(item))},
         setInLiked : (item) => {dispatch(setInLikedTC(item))},
         addToLikedTC : (item) => {dispatch(addToLikedTC(item))},
-        removeTC : (item) => {dispatch(removeTC(item))}
+        removeFromLikedTC : (item) => {dispatch(removeTC(item))}
     }
 }
 

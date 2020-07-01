@@ -3,18 +3,18 @@ import styles from "./ItemsList.module.scss";
 import { PreviewItemCard } from "../PreviewItemCards/PreviewItemCard";
 import Filter from "./../FilterSection/Filter";
 
-export const ItemsList = ({ hingesList, getHingesList , getCartItems, getLikedItems }) => {
+export const ItemsList = ({hingesList,getHingesList,getCartItems,getLikedItems,setInLiked,addToLiked,removeFromLiked,}) => {
 	useEffect(() => {
 		getHingesList();
 	}, []);
 
-	useEffect( () => {
+	useEffect(() => {
 		getCartItems();
-	},[]) 
+	}, []);
 
-	useEffect ( () => {
-		getLikedItems()
-	}, [])
+	useEffect(() => {
+		getLikedItems();
+	}, []);
 
 	const materials = React.useMemo(
 		() => [...new Set(hingesList.map((hinge) => hinge.description.material))],
@@ -51,6 +51,7 @@ export const ItemsList = ({ hingesList, getHingesList , getCartItems, getLikedIt
 
 	let renderHinges = filteredHinges.map((hinge, i) => (
 		<PreviewItemCard
+			hingeInfo={hinge}
 			key={i}
 			header={hinge.header}
 			article={hinge.ArticleNumber}
@@ -60,6 +61,9 @@ export const ItemsList = ({ hingesList, getHingesList , getCartItems, getLikedIt
 			price={hinge.price}
 			text={hinge.description.text}
 			isInLiked={hinge.isInLiked}
+			setInLiked={setInLiked}
+			addToLiked={addToLiked}
+			removeFromLiked={removeFromLiked}
 		/>
 	));
 

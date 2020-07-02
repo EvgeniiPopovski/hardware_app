@@ -14,6 +14,7 @@ const CartComponent = (props) => {
 
 	let renderArr = cartItemsArr.map((item, i) => (
 		<CartItem
+			HingeInfo={item}
 			key={i}
 			ArticleNumber={item.ArticleNumber}
 			cartInfo={item.cartInfo}
@@ -22,6 +23,7 @@ const CartComponent = (props) => {
 			isInLiked={item.isInLiked}
 			photoes={item.photoes}
 			price={item.price}
+			setCartQuantityTC={props.setCartQuantityTC}
 		/>
 	));
 

@@ -5,20 +5,20 @@ import { PreloaderHOC } from "../ItemPageHOC";
 
 
 
-export const ItemPhoto = (props) => {
+export const ItemPhoto = ({HingeInfo}) => {
     
-    const [MainSlidePhoto, setMainSlidePhoto] = useState(props.photoes.MainPhoto);
+    const [MainSlidePhoto, setMainSlidePhoto] = useState(HingeInfo.photoes.MainPhoto);
 
-	if (!props) {
-		return <Preloader />;
-	}
+	// if (!HingeInfo) {
+	// 	return <Preloader />;
+	// }
 	
-	const minislidesArray = Object.keys(props.photoes);
+	const minislidesArray = Object.keys(HingeInfo.photoes);
 	const minislides = minislidesArray.map((item, i) => {
 		return (
 			<div
 				className={
-					props.photoes[item] === MainSlidePhoto
+					HingeInfo.photoes[item] === MainSlidePhoto
 						? styles.miniSlide + " " + styles.active
 						: styles.miniSlide
 				}
@@ -27,7 +27,7 @@ export const ItemPhoto = (props) => {
 			>
 				<img
 					className={styles.miniSlidePict}
-					src={props.photoes[item]}
+					src={HingeInfo.photoes[item]}
                     alt=""
                     onClick={(event) => setMainSlidePhoto(event.currentTarget.src)}
 				/>

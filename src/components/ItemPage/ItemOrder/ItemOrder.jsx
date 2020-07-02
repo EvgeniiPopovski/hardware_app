@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import styles from "./ItemOrder.module.scss";
 import Preloader from "../../../common/Preloader/Preloader";
-import { Button, Tooltip } from "antd";
-import {
-	MinusOutlined,
-	PlusOutlined,
-	LikeOutlined,
-	ShoppingCartOutlined,
-} from "@ant-design/icons";
-import { Input } from "antd";
+import { Button } from "antd";
+import { LikeOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { ItemQuantitySelection } from "./ItemQuantitySelection";
+import { PreloaderHOC } from "../ItemPageHOC";
+
 
 export const ItemOrderMemo = React.memo(function ItemOrder({
 	HingeInfo,
@@ -19,15 +16,17 @@ export const ItemOrderMemo = React.memo(function ItemOrder({
 	removeFromLikedTC,
 	setInLiked,
 }) {
-	const [quantity, setQuantity] = useState(1);
+	
+
+	const  [quantity, setQuantity] = useState(HingeInfo.cartInfo.cartQuantity);
 
 	const setValue = (event) => {
 		return setQuantity(+event.currentTarget.value);
 	};
 
-	if (!HingeInfo) {
-		return <Preloader />;
-	}
+	// if (!HingeInfo) {
+	// 	return <Preloader />;
+	// }
 
 	return (
 		<div className={styles.itemorderContainer}>
@@ -39,36 +38,21 @@ export const ItemOrderMemo = React.memo(function ItemOrder({
 				<p className={styles.quantity}>
 					Количество {quantity} на сумму {HingeInfo.price * quantity} руб.
 				</p>
-				<Tooltip title="уменьшить">
-					<Button
-						type={"primary"}
-						disabled={quantity <= 1 && true || HingeInfo.cartInfo.isInCart}
-						icon={<MinusOutlined />}
-						onClick={() => setQuantity(quantity - 1)}
-					/>
-				</Tooltip>
-				<Input
-					className={styles.itemCounter}
-					step="1"
-					min="1"
-					type="text"
-					value={quantity}
-					onChange={(event) => setValue(event)}
+
+				<ItemQuantitySelection
+					HingeInfo={HingeInfo}
+					quantity={quantity}
+					setQuantity={setQuantity}
+					setInCart={setInCart}
+					setValue={setValue}
 				/>
-				<Tooltip title="увеличить">
-					<Button
-						disabled={HingeInfo.cartInfo.isInCart}
-						type={"primary"}
-						icon={<PlusOutlined />}
-						onClick={() => setQuantity(quantity + 1)}
-					/>
-				</Tooltip>
+
 				{HingeInfo.cartInfo.isInCart ? (
 					<Button
 						icon={<ShoppingCartOutlined />}
 						onClick={() => {
 							removeFromCart(HingeInfo);
-							setInCart(HingeInfo, false, 0);
+							setInCart(HingeInfo, false, 1);
 						}}
 					>
 						Убрать из корзины
@@ -115,3 +99,5 @@ export const ItemOrderMemo = React.memo(function ItemOrder({
 		</div>
 	);
 });
+
+export const  ItemOrederWithHOC =  PreloaderHOC(ItemOrderMemo) 

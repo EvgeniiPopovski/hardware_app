@@ -13,6 +13,11 @@
     align-self: center;
     flex-shrink: 1;
 }
+.itemInformation{
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+}
 .itemImg {
     height: 100%;
     width: 25%;
@@ -22,8 +27,13 @@
 }
 .descriptionContainer{ 
     display: flex;
-    align-items: center;
-    flex-grow: 1;
-
+    align-items: flex-start;
     
+    flex-grow: 1;
+}
+.itemDescription{
+    align-self: center;
+}
+.cartInput{
+    width: 40px
 }

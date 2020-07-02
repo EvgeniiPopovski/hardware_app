@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import { CartComponent } from "./CartComponent"
-import { getCartItemsTC } from "../../redux/cartReducer"
+import { getCartItemsTC, setCartQuantityTC } from "../../redux/cartReducer"
 
 
 const mapStateToProps = (state) => {
@@ -11,7 +11,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getCartItems: () => {dispatch(getCartItemsTC())}
+        getCartItems: () => {dispatch(getCartItemsTC())},
+        setCartQuantityTC: (item , quantity) => {dispatch(setCartQuantityTC(item , quantity))}
     }
 }
 

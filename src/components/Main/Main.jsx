@@ -5,11 +5,16 @@ import { MainBlocksThunkCreator } from "../../redux/mainBlocksReduser";
 import { connect } from "react-redux";
 
 import Preloader from "../../common/Preloader/Preloader";
+import { getCartItemsTC } from "../../redux/cartReducer";
 
-const Main = ({ isLoading, MainBlocks, getMainBlocks }) => {
+const Main = ({ isLoading, MainBlocks, getMainBlocks , getCartItems}) => {
 	useEffect(() => {
 		getMainBlocks();
 	}, []);
+	useEffect(() => {
+		getCartItems();
+	}, []);
+
 
 	let bloks = MainBlocks.map((block, i) => (
 		<HardwareSections
@@ -34,9 +39,8 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
 	return {
-		getMainBlocks: () => {
-			dispatch(MainBlocksThunkCreator());
-		},
+		getMainBlocks: () => {dispatch(MainBlocksThunkCreator())},
+		getCartItems: () => {dispatch(getCartItemsTC())}
 	};
 };
 export const MainContainer = connect(mapStateToProps, mapDispatchToProps)(Main);

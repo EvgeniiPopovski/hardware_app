@@ -3,27 +3,28 @@ import styles from "./Header.module.scss";
 import { Link } from "react-router-dom";
 // import BurgerButton from "../../common/BurgerButton/BurgerButton";
 import { Input, Button, Tooltip } from "antd";
-import {MenuOutlined , ShoppingCartOutlined} from '@ant-design/icons'
+import { MenuOutlined, ShoppingCartOutlined, ExportOutlined } from "@ant-design/icons";
 const { Search } = Input;
 
-export const Header = ({ toggleMenuOpen, cartItemList}) => {
-
-	
-
-	let cartButtonSum = 0
+export const Header = ({ toggleMenuOpen, cartItemList }) => {
+	let cartButtonSum = 0;
 
 	if (cartItemList) {
-		for(let key in cartItemList){
-			cartButtonSum += cartItemList[key].cartInfo.cartQuantity * cartItemList[key].price
+		for (let key in cartItemList) {
+			cartButtonSum +=
+				cartItemList[key].cartInfo.cartQuantity * cartItemList[key].price;
 		}
 	}
-	
 
 	return (
 		<div className={styles.headerContainer}>
 			<div className={styles.menuBurgerContainer}>
 				<Tooltip title="Меню">
-					<Button shape='circle' onClick={toggleMenuOpen} icon={<MenuOutlined />} />
+					<Button
+						shape="circle"
+						onClick={toggleMenuOpen}
+						icon={<MenuOutlined />}
+					/>
 				</Tooltip>
 				{/* <BurgerButton toggleMenuOpen={toggleMenuOpen} /> */}
 				<h1 className={styles.logo}>
@@ -40,9 +41,20 @@ export const Header = ({ toggleMenuOpen, cartItemList}) => {
 					onSearch={(value) => console.log(value)}
 				/>
 			</div>
-			<Link to="/cart" >
+			<Link to="/cart">
 				<Tooltip title="Корзина">
-					<Button  type='primary' icon={<ShoppingCartOutlined />} >{cartButtonSum ===0 ? 'Ваша корзина пуста' : `Заказ на сумму ${cartButtonSum} руб`} </Button>
+					<Button type="primary" icon={<ShoppingCartOutlined />}>
+						{cartButtonSum === 0
+							? "Ваша корзина пуста"
+							: `Заказ на сумму ${cartButtonSum} руб`}
+					</Button>
+				</Tooltip>
+			</Link>
+			<Link to="/personal">
+				<Tooltip title="Личный кабинет">
+					<Button type="primary" icon={<ExportOutlined />}>
+						Личный кабинет
+					</Button>
 				</Tooltip>
 			</Link>
 		</div>

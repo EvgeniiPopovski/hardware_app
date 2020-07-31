@@ -2,10 +2,7 @@ import React from "react";
 import styles from "./CartItem.module.scss";
 
 import { Input, Button } from "antd";
-import {
-	MinusOutlined,
-	PlusOutlined,
-} from "@ant-design/icons";
+import { MinusOutlined, PlusOutlined, DeleteOutlined, StarFilled , StarOutlined } from "@ant-design/icons";
 
 const CartItem = ({
 	HingeInfo,
@@ -16,12 +13,17 @@ const CartItem = ({
 	isInLiked,
 	photoes,
 	price,
-	setCartQuantityTC
+	setCartQuantityTC,
+	removeFromCart,
+	setInCartTC,
+	removeFromLiked,
+	addToLiked,
+	toggleInCartLikedItemTC
+
 }) => {
 	let divImage = {
 		backgroundImage: "url(" + photoes.MainPhoto + ")",
 	};
-
 	return (
 		<div className={styles.itemContainer}>
 			<h2 className={styles.itemHeader}>{header}</h2>
@@ -36,12 +38,68 @@ const CartItem = ({
 				</div>
 
 				<div>
-					<Button type={"primary"} icon={<MinusOutlined />} onClick={() => setCartQuantityTC(HingeInfo , HingeInfo.cartInfo.cartQurntity - 1 )} />
-					<Input className={styles.cartInput} value={cartInfo.cartQuantity} onChange={(event) => setCartQuantityTC(HingeInfo , +event.currentTarget.value )}/>
-					<Button type={"primary"} icon={<PlusOutlined />} onClick={() => setCartQuantityTC(HingeInfo , HingeInfo.cartInfo.cartQurntity + 1 )}/>
-					<p className={styles.price}>Стоимость: {price * cartInfo.cartQuantity}руб ({cartInfo.cartQuantity}шт * {price}руб)</p>
+					<Button
+						type={"primary"}
+						disabled={HingeInfo.cartInfo.cartQuantity === 1}
+						icon={<MinusOutlined />}
+						onClick={() =>
+							setCartQuantityTC(
+								HingeInfo,
+								HingeInfo.cartInfo.cartQuantity - 1
+							)
+						}
+					/>
+					<Input
+						className={styles.cartInput}
+						value={cartInfo.cartQuantity}
+						onChange={(event) =>
+							setCartQuantityTC(HingeInfo, +event.currentTarget.value)
+						}
+					/>
+					<Button
+						type={"primary"}
+						icon={<PlusOutlined />}
+						onClick={() =>
+							setCartQuantityTC(
+								HingeInfo,
+								HingeInfo.cartInfo.cartQuantity + 1
+							)
+						}
+					/>
+					<p className={styles.price}>
+						Стоимость: {price * cartInfo.cartQuantity}руб (
+						{cartInfo.cartQuantity}шт * {price}руб)
+					</p>
 				</div>
+				<Button
+					type={"primary"}
+					icon={<DeleteOutlined />}
+					onClick={() => {
+						removeFromCart(HingeInfo);
+						setInCartTC(HingeInfo, false, 1);
+						
+					}}
+				>
+					Удалить
+				</Button>
 			</div>
+			{isInLiked ? (
+				<StarFilled
+					className={styles.starFilled}
+					onClick={() => {
+						removeFromLiked(HingeInfo);
+						toggleInCartLikedItemTC(HingeInfo, false)
+					}}
+				/>
+			) : (
+				<StarOutlined
+					className={styles.starOutlined}
+					onClick={() => {
+						addToLiked(HingeInfo);
+						toggleInCartLikedItemTC(HingeInfo , true)
+					}}
+				/>
+			)}
 		</div>
 	);
 };

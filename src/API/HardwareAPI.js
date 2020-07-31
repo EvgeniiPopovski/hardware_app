@@ -48,8 +48,19 @@ export  const fireBaseAPI = {
     async removeFromCart (itemCode) {
         let response = await instance.delete(`/ItemsCart/${itemCode}.json`)
         return response
+    },
+    async changeHingeCartInfoQuantity (item , itemIndex) {
+        let response = await instance.patch(`/HingesList/Hinges/${itemIndex}.json` , JSON.stringify(item))
+        return response
+    },
+    async changeCartQuantity (itemCode , itemInfo) {
+        let response = await instance.patch(`/ItemsCart/${itemCode}.json` , JSON.stringify(itemInfo))
+        return response
+    }, 
+    async changeCartIsInLiked (item , itemCode) {
+        let response = await instance.patch(`/ItemsCart/${itemCode}.json` , JSON.stringify(item))
+        return response
     }
-
 }
 
 

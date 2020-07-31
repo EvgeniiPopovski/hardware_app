@@ -5,13 +5,15 @@ import SemiSectionsReducer from './semiSectionsreducer';
 import { HingesListReduser } from './hingesListReduser';
 import { cartReduser } from './cartReducer';
 import { likedItemsReducer } from './likedItemsReducer';
+import { AuthReduser } from './authReducer';
 
 const reducers = combineReducers ({
     MainBlocks : MainBlocksReducer,
     SemiSections : SemiSectionsReducer,
     HingesList : HingesListReduser,
     Cart : cartReduser,
-    LikedItems : likedItemsReducer
+    LikedItems : likedItemsReducer,
+    AuthReduser : AuthReduser,
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

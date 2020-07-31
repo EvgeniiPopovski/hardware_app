@@ -37,3 +37,10 @@
 .cartInput{
     width: 40px
 }
+.starFilled  , .starOutlined {
+	font-size: 25px;
+	color: #3333ff;
+	
+	z-index: 20;
+	cursor: pointer;
+}

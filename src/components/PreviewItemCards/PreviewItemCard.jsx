@@ -16,12 +16,9 @@ export const PreviewItemCard = (props) => {
 			<div className={styles.propertyCard}>
 				{props.isInLiked 
 				? <StarFilled className={styles.starFilled} 
-					onClick={ () => {props.removeFromLiked(props.hingeInfo) 
-										props.setInLiked(props.hingeInfo)}} /> 
-
+					onClick={ () => {props.toggleInCartLikedItem(props.hingeInfo , false)}} /> 
 				: <StarOutlined className={styles.starOutlined}
-					onClick={() => {props.setInLiked(props.hingeInfo)
-									props.addToLiked(props.hingeInfo)}} />}
+					onClick={() => {props.toggleInCartLikedItem(props.hingeInfo , true)}} />}
 				
 				<Link to={`/shower/showerHinges/${props.article}`}>
 					<div className={styles.propertyImage} style={divImage}>

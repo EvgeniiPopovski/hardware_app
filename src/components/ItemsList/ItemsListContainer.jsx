@@ -2,7 +2,7 @@
 import {connect} from "react-redux"
 import {ItemsList} from './ItemsList'
 import { getHingesListTC, setInLikedTC } from '../../redux/hingesListReduser'
-import { getCartItemsTC} from "../../redux/cartReducer"
+import { getCartItemsTC, toggleInCartLikedItemTC} from "../../redux/cartReducer"
 import { setLikedItemsTC, addToLikedTC, removeTC } from "../../redux/likedItemsReducer"
 
 const mapStateToProps = (state) => {
@@ -21,7 +21,9 @@ const mapDispatchToProps = (dispatch) => {
         setInLiked : (item) => {dispatch(setInLikedTC(item))},
         addToLiked : (item) => {dispatch(addToLikedTC(item))},
         removeFromLiked : (item) => {dispatch(removeTC(item))},
-    }
+
+        toggleInCartLikedItem: (item , isInLiked) => {dispatch(toggleInCartLikedItemTC( item , isInLiked ))}
+    } 
 }
 
 

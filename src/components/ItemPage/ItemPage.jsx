@@ -9,7 +9,7 @@ import {
 	setInLikedTC,
 	setInCartTC,
 } from "../../redux/hingesListReduser";
-import { addToCartTC, removeFromCartTC, getCartItemsTC } from "../../redux/cartReducer";
+import { addToCartTC, removeFromCartTC, getCartItemsTC, toggleInCartLikedItemTC } from "../../redux/cartReducer";
 import { ItemOrederWithHOC} from "./ItemOrder/ItemOrder";
 import { addToLikedTC, removeTC, setLikedItemsTC } from "../../redux/likedItemsReducer";
 
@@ -82,6 +82,9 @@ const mapDispatchToProps = (dispatch) => {
 		removeFromLikedTC: (item) => {
 			dispatch(removeTC(item));
 		},
+		toggleInCartLikedItem: (itemInfo , isInLiked) => {
+			dispatch(toggleInCartLikedItemTC((itemInfo , isInLiked)))
+		}
 	};
 };
 

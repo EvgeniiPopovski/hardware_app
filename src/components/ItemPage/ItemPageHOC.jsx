@@ -45,6 +45,7 @@ let mapDispatchToProps = (dispatch) => {
 		removeFromLikedTC: (item) => {
 			dispatch(removeTC(item));
 		},
+		
 	};
 };
 export const PreloaderHOC = (Component) => {

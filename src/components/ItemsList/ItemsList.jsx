@@ -3,7 +3,7 @@ import styles from "./ItemsList.module.scss";
 import { PreviewItemCard } from "../PreviewItemCards/PreviewItemCard";
 import Filter from "./../FilterSection/Filter";
 
-export const ItemsList = ({hingesList,getHingesList,getCartItems,getLikedItems,setInLiked,addToLiked,removeFromLiked,}) => {
+export const ItemsList = ({hingesList,getHingesList,getCartItems,getLikedItems,setInLiked,addToLiked,removeFromLiked,toggleInCartLikedItem}) => {
 	useEffect(() => {
 		getHingesList();
 	}, []);
@@ -64,6 +64,7 @@ export const ItemsList = ({hingesList,getHingesList,getCartItems,getLikedItems,s
 			setInLiked={setInLiked}
 			addToLiked={addToLiked}
 			removeFromLiked={removeFromLiked}
+			toggleInCartLikedItem={toggleInCartLikedItem}
 		/>
 	));
 

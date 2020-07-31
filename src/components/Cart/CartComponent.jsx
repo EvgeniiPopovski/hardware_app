@@ -6,6 +6,12 @@ const CartComponent = (props) => {
 	useEffect(() => {
 		props.getCartItems();
 	}, []);
+	useEffect(() => {
+		props.getHingesListTC()
+	}, [])
+	useEffect(() => {
+		props.getLikedList()
+	}, [])
 
 	let cartItemsArr = [];
 	for (let item in props.cartItems) {
@@ -24,12 +30,20 @@ const CartComponent = (props) => {
 			photoes={item.photoes}
 			price={item.price}
 			setCartQuantityTC={props.setCartQuantityTC}
+			removeFromCart = {props.removeFromCart}
+			setInCartTC={props.setInCartTC}
+			removeFromLiked={props.removeFromLiked}
+			setInLiked={props.setInLiked}
+			addToLiked={props.addToLiked}
+			toggleInCartLikedItemTC={props.toggleInCartLikedItemTC}
+			
 		/>
 	));
 
 	return (
 		<div className={styles.center}>
-			<div className={styles.wrapper}>{renderArr}</div>
+			{props.cartItems ? <div className={styles.wrapper}>{renderArr}</div> : <div>Карзина пуста. Перейти к каталогу</div> }
+			
 		</div>
 	);
 };

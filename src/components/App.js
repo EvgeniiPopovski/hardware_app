@@ -8,8 +8,10 @@ import { ItemsListContainer } from "./ItemsList/ItemsListContainer";
 import { ItemPageContainer } from "./ItemPage/ItemPage";
 import { HeaderContainer } from "./Header/HeaderContainer";
 import { CartContainer } from "./Cart/CartContainer";
-// import { Auth } from "./Auth/Auth";
+
 import { AuthContainer } from "./Auth/AuthContainer";
+import { UserInfo } from "./Auth/UserInfo/UserInfo";
+
 
 
 function App() {
@@ -29,7 +31,8 @@ function App() {
 				<Route exact path="/shower/showerHinges" component={ItemsListContainer} />
 				<Route exact path="/shower/showerHinges/:article" component={ItemPageContainer} />
 				<Route exact path="/cart" component={CartContainer}/>
-				<Route exact path="/personal" component={AuthContainer}/>
+				<Route exact path="/personal" component={UserInfo}/>
+				<Route exact path="/login" component={AuthContainer}/>
 				{/* <Route path = '/constructions' component={}/>
 				<Route path = '/mirror' component={}/>
 				<Route path = '/glassFurniture' component={}/> */}

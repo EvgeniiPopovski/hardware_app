@@ -2,19 +2,21 @@ import React from "react";
 import { Input, Button } from "antd";
 import { ExportOutlined } from "@ant-design/icons";
 import styles from "./../Auth.module.scss";
-import { authAPI } from "../../../API/authAPI";
+import { Redirect } from "react-router";
 
 
-const Registration = ({ setAuthLogin, setAuthPass, email, password }) => {
+
+
+const Registration = ({ setAuthLogin, setAuthPass, email, password, doRegistration, userId }) => {
 	const changeLogin = (event) => {
 		setAuthLogin(event.target.value);
 	};
 	const changePass = (event) => {
 		setAuthPass(event.target.value);
 	};
-	const doRegistration = () => {
-		authAPI.setUser(email, password );
-	};
+	if (userId) {
+		return <Redirect to='/personal'/>
+	}
 	return (
 		<div className={styles.authContainer}>
 			<div className={styles.inputLogin}>
@@ -33,8 +35,8 @@ const Registration = ({ setAuthLogin, setAuthPass, email, password }) => {
 					/>
 				</label>
 			</div>
-			<Button icon={<ExportOutlined />} onClick={() => doRegistration()}>
-				Войти
+			<Button icon={<ExportOutlined />} onClick={() => doRegistration(email , password)}>
+				Регистрация
 			</Button>
 		</div>
 	);

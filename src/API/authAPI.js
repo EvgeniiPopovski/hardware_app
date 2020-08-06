@@ -10,11 +10,10 @@ const Project_ID = "hardwareapp-5fb7d";
 
 export const authAPI = {
 	async setUser(email, pass) {
-		console.log(email, pass);
 		let response = await axios.post(
 			"https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAltd4n7g7pxCovTkmQPUvJ-0lZkJAKE_s",
 			{ email: email, password: pass, returnSecureToken: true }
-        );
-        console.log(response)
+		);
+		return response
 	},
 };

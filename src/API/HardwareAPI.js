@@ -60,10 +60,9 @@ export  const fireBaseAPI = {
     async changeCartIsInLiked (item , itemCode) {
         let response = await instance.patch(`/ItemsCart/${itemCode}.json` , JSON.stringify(item))
         return response
+    },
+    async setUsersProfile (userProfile) {
+        let response = await instance.post('/LikedItems/.json' , JSON.stringify(userProfile))
+        return response 
     }
 }
-
-
-
-
-

@@ -1,13 +1,10 @@
-.header {
-  background-color: #c7e2ed;
+.site-layout-background{
+  height: 50px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+}
 
-  &_title{
-    color: white;
-    font-size: 2rem;
-    margin: 5px;
-    text-align: center;
+.header {
+  &_title { 
+    color: white
   }
 }

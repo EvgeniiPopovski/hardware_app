@@ -1,10 +1,13 @@
 import React from 'react';
+import { Layout } from 'antd'
 import './footer.scss';
 
-const Footer: React.FC = () => {
+const FooterApp: React.FC = () => {
   return (
-    <footer className="footer section">Footer</footer>
+    <div className='footer'>
+      <Layout.Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Layout.Footer>
+    </div>
   );
 };
 
-export { Footer };
+export { FooterApp };
